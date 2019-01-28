@@ -68,10 +68,6 @@ class SPGroupNode: NSObject, NSCopying, NSCoding, SPNamedNode {
         self.nodeIsExpanded = (dict[SPFavoritesGroupIsExpandedKey] as? NSNumber)?.boolValue ?? false
     }
 
-    convenience init(name: String?) {
-        self.init(name: name ?? "")
-    }
-
 //    convenience init(dictionary dict: [AnyHashable : Any]?) {
 //        if let dict = dict {
 //            self.init(dictionary: dict)

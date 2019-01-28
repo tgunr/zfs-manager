@@ -52,10 +52,6 @@ class SPFavoriteNode: NSObject, NSCopying, NSCoding {
         self.nodeFavorite = dictionary
     }
 
-    convenience init(dictionary: [AnyHashable : Any]?) {
-            self.init(dictionary: dictionary)
-    }
-
 // MARK: -
 // MARK: Initialisation
     override init() {
@@ -67,18 +63,12 @@ class SPFavoriteNode: NSObject, NSCopying, NSCoding {
 // MARK: Copying protocol methods
     func copy(with zone: NSZone? = nil) -> Any {
         let node = SPFavoriteNode()
-//        let anode = alloc(with: zone)() as? SPFavoriteNode
-
-        if let copy = node.copy(with: zone) as? [AnyHashable : Any] {
-            node.nodeFavorite = copy
-        }
-
         return node
     }
 
 // MARK: -
 // MARK: Coding protocol methods
-    required init?(coder coder: NSCoder) {
+    required init?(coder: NSCoder) {
         #if false
         if !super.init() {
             return nil

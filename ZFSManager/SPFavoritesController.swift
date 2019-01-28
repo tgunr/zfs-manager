@@ -86,7 +86,7 @@ class SPFavoritesController: SPSingleton {
     }
 
     func addGroupNode(withName name: String?, asChildOf parent: SPTreeNode?) -> SPTreeNode? {
-        let node = SPTreeNode(representedObject: SPGroupNode(name: name))
+        let node = SPTreeNode(representedObject: SPGroupNode(name: name ?? ""))
 
         node.isGroup = true
 
@@ -170,7 +170,8 @@ class SPFavoritesController: SPSingleton {
         let root = favoritesData[SPFavoritesRootKey] as? [AnyHashable : Any]
 
         let rootGroupNode = SPGroupNode()
-        let favoritesGroupNode = SPGroupNode(name: (root?[SPFavoritesGroupNameKey] as! String).uppercased() ?? "")
+        let rootName = (root?[SPFavoritesGroupNameKey]) as! String
+        let favoritesGroupNode = SPGroupNode(name: rootName)
 
         favoritesGroupNode.nodeIsExpanded = (root?[SPFavoritesGroupIsExpandedKey] as? NSNumber)?.boolValue ?? false
 
@@ -302,7 +303,7 @@ class SPFavoritesController: SPSingleton {
                 }
             }
         } else {
-            node = SPFavoriteNode(dictionary: nodeData)
+            node = SPFavoriteNode(dictionary: nodeData ?? [:])
             treeNode = SPTreeNode(representedObject: node)
         }
 
@@ -317,7 +318,7 @@ class SPFavoritesController: SPSingleton {
             object = SPGroupNode(dictionary: data ?? [:])
             childs = data?[SPFavoriteChildrenKey] as? [Any]
         } else {
-            object = SPFavoriteNode(dictionary: data)
+            object = SPFavoriteNode(dictionary: data ?? [:])
         }
 
         let node = SPTreeNode(representedObject: object)
@@ -327,7 +328,7 @@ class SPFavoritesController: SPSingleton {
         //also add the children
         if childs != nil {
             for childData: [AnyHashable : Any]? in childs as? [[AnyHashable : Any]?] ?? [] {
-                _addFavoriteNode(withData: childData, asChildOf: node)
+                addFavoriteNode(withData: childData, asChildOf: node)
             }
         }
 
