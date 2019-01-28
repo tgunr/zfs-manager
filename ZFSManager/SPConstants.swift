@@ -34,6 +34,7 @@
  * of said class. Try to avoid the use of macros to define constants as much as possible as they do not incur
  * type checking when used and cannot be tested for equality.
  */
+import Foundation
 
 // View modes
 enum SPViewMode : Int {
@@ -68,7 +69,7 @@ enum SPExportType : Int {
     case sppdfExport = 4
     case sphtmlExport = 5
     case spExcelExport = 6
-    case spAnyExportType = UInt.max // this is a transient type to indicate "no specific choice"
+    case spAnyExportType = -1 // this is a transient type to indicate "no specific choice"
 }
 
 // Export source constants
@@ -103,7 +104,7 @@ enum SPTableType : Int {
     case table = 0
     case view = 1
     case proc = 2
-    case func = 3
+    case `func` = 3
     case event = 4
 }
 
@@ -115,7 +116,7 @@ enum SPTableViewType : Int {
     case spTableViewStatus = 3
     case spTableViewRelations = 4
     case spTableViewTriggers = 5
-    case spTableViewInvalid = NSNotFound
+    case spTableViewInvalid = -1
 }
 
 // SSH tunnel password modes
@@ -235,6 +236,7 @@ let SPLOCALIZEDURL_CONTENTFILTERHELP = NSLocalizedString("https://www.sequelpro.
 // Narrow down completion max rows// Default monospaced font name// System database names// Table view drag types// File extensions// File names// SPF file types// Folder names// Table filter// Preference key constants// General Prefpane// Tables Prefpane// Favorites Prefpane// Notifications Prefpane// Network Prefpane// Editor Prefpane// AutoUpdate Prefpane// GUI Prefs// Hidden Prefs// Import and export// Export filename tokens// Misc// URLs// Toolbar constants
 //
 // Main window toolbar// Preferences toolbar// Connection favorite keys// Favorites import/export// Bundle Files and Bundle Editorenum SPBundleRedirectAction : Int {
+enum SPBundleRedirectAction: Int {
     case none = 200
     case replaceSection = 201
     case replaceContent = 202
@@ -243,9 +245,10 @@ let SPLOCALIZEDURL_CONTENTFILTERHELP = NSLocalizedString("https://www.sequelpro.
     case showAsHTML = 205
     case showAsTextTooltip = 207
     case showAsHTMLTooltip = 208
-    case lastCode = 208
+    case lastCode = 299
 }
 
+enum SPErrorCode: Int {
 // URL scheme /* generic SP error domain for NSError */enum SPErrorCode : Int {
     //* When plist deserialization fails with nil return and no NSError or the returned object has the wrong type
     case spErrorWrongTypeOrNil = 110001
@@ -622,5 +625,5 @@ var SPErrorDomain = "SPErrorDomain"
 
 @inline(__always) func SPClear(addr: Any?) {
     var addr = addr
-    , addr = nil
+    addr = nil
 }

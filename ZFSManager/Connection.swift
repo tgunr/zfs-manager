@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+enum ConnectionType {
+    case ssh, sftp
+}
+
+class Connection {
+    var host = ""
+    var user = ""
+    var password = ""
+    var type:ConnectionType?
+}
+
+class SSHConnection: Connection {
+    var private_key = ""
+    var public_key = ""
+    var useConfigurationFile: Bool  = true
+}
+

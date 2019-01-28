@@ -33,8 +33,17 @@
  * the convertion from a NSString to NSData or const char* resp.
  * NSData *d = [aStr UTF8String];  :== NSData *d = NSStringUTF8String(aStr);
  */
+//    typedef const char* (*SPUTF8StringMethodPtr)(NSString*, SEL);
+/*
+private let SPNSStringGetUTF8String: [Any] = []
+let to_return = Int8()
+
+//@inline(__always) private func (NSString() -> UnsafePointer<Int8>? {
+//}
 private var SPNSStringGetUTF8String: SPUTF8StringMethodPtr?
+
 let to_return = SPNSStringGetUTF8String?(self, #selector(self.utf8CString))
+
 private var SPMutableAttributedStringAddAttributeValueRange: SPMutableAttributedStringAddAttributeValueRangeMethodPtr?
 private var SPMutableAttributedStringAttributeAtIndex: SPMutableAttributedStringAttributeAtIndexMethodPtr?
 var r = SPMutableAttributedStringAttributeAtIndex?(self, #selector(self.attribute(_:at:effectiveRange:)), aStr, anIndex, aRange)
@@ -45,9 +54,12 @@ var r = SPMutableAttributedStringAttributeAtIndex?(self, #selector(self.attribut
 @inline(__always) private func (NSMutableAttributedString() -> void NSMutableAttributedStringAddAttributeValueRange {
     self, NSString * aStr, id
 }
+*/
+import Foundation
 
 extension String {
-    convenience init(for byteSize: Int64) {
+    /*
+    init(for byteSize: Int64) {
         var size = Double(byteSize)
 
         let numberFormatter = NumberFormatter()
@@ -90,8 +102,10 @@ extension String {
 
         numberFormatter.string(from: NSNumber(value: size))
     }
+    */
 
-    convenience init(for timeInterval: Double) {
+    /*
+    init(for timeInterval: Double) {
         let numberFormatter = NumberFormatter()
 
         numberFormatter.numberStyle = .decimal
@@ -104,16 +118,16 @@ extension String {
         }
 
         if timeInterval < 0.1 {
-            timeInterval = timeInterval * 1000
+            let aTimeInterval = timeInterval * 1000
             numberFormatter.format = "#,##0.0 ms"
 
-            numberFormatter.string(from: NSNumber(value: timeInterval))
+            numberFormatter.string(from: NSNumber(value: aTimeInterval))
         }
         if timeInterval < 1 {
-            timeInterval = timeInterval * 1000
+            let aTimeInterval = timeInterval * 1000
             numberFormatter.format = "#,##0 ms"
 
-            numberFormatter.string(from: NSNumber(value: timeInterval))
+            numberFormatter.string(from: NSNumber(value: aTimeInterval))
         }
 
         if timeInterval < 10 {
@@ -135,20 +149,22 @@ extension String {
         }
 
         if timeInterval < 3600 {
-            timeInterval = timeInterval / 60
+            let aTimeInterval = timeInterval / 60
             numberFormatter.format = "#,##0 min"
 
-            numberFormatter.string(from: NSNumber(value: timeInterval))
+            numberFormatter.string(from: NSNumber(value: aTimeInterval))
         }
 
-        timeInterval = timeInterval / 3600
+        let aTimeInterval = timeInterval / 3600
 
         numberFormatter.format = "#,##0 hours"
 
         numberFormatter.string(from: NSNumber(value: timeInterval))
     }
+    */
 
-    convenience init() {
+    /*
+    init() {
         // Create a new UUID
         let uuidObj = CFUUIDCreate(nil)
 
@@ -157,13 +173,15 @@ extension String {
 
         newUUID
     }
+    */
 
     func rot13() -> String? {
         var theChar: unichar
         var holder = ""
 
         for i in 0..<count {
-            theChar = unichar(self[self.index(self.startIndex, offsetBy: UInt(i))])
+            let aChar = self[index(startIndex, offsetBy: i)]
+            theChar = unichar(String(aChar)) ?? 0
 
             if theChar <= 122 && theChar >= 97 {
                 if Int(theChar + 13) > 122 {
@@ -242,6 +260,7 @@ extension String {
         return lineRangesArray
     }
 
+    /*
     func createViewSyntaxPrettifier() -> String? {
         let searchRange = NSRange(location: 0, length: count)
         var matchedRange: NSRange
@@ -287,7 +306,9 @@ extension String {
 
         return tblSyntax
     }
+    */
 
+    /*
     func getGeomFromTextString() -> String? {
         let geomStr = trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
@@ -316,7 +337,9 @@ extension String {
     func stringByRemovingCharacters(in charSet: CharacterSet?) -> String? {
         return stringByRemovingCharacters(in: charSet, options: 0)
     }
+    */
 
+    /*
     func stringByRemovingCharacters(in charSet: CharacterSet?, options mask: Int) -> String? {
         let len: Int = count
         var newString = ""
@@ -346,6 +369,7 @@ extension String {
 
         return newString
     }
+    */
 
     /**
      * Replace all occurances of any character in set with the replacement string
@@ -353,6 +377,7 @@ extension String {
      * @param string A replacement string (can be nil == empty string)
      * @return A string with replacements applied
      */
+    /*
     func stringByReplacingCharacters(in `set`: CharacterSet?, with string: String?) -> String? {
         let len: Int = count
         var newString = ""
@@ -392,7 +417,9 @@ extension String {
         }
         return newString
     }
+    */
 
+    /*
     func levenshteinDistance(withWord stringB: String?) -> CGFloat {
         // Normalize strings
         var stringA = self as String
@@ -444,6 +471,7 @@ extension String {
 
         return 0.0
     }
+    */
 
     /**
      * Checks if the string other is contained in self on a per-character basis.
@@ -467,6 +495,7 @@ extension String {
      * @return YES if self contains all characters from other in the order given in other
      * @warning This method is NOT thread-safe (probably), NOT constant-time and DOES NOT check binary equivalence
      */
+    /*
     func nonConsecutivelySearch(_ other: String?, matchingRanges submatches: [Any]?) -> Bool {
         let opts: NSString.CompareOptions = [.caseInsensitive, .diacriticInsensitive, .widthInsensitive]
         let recordMatches: Bool = submatches != nil //for readability
@@ -587,6 +616,7 @@ extension String {
         free(tmpMatchStore) // free(NULL) is safe as per OS X man page
         return matchCount > 0
     }
+    */
 
     /*
      * Returns a human readable version string of the supplied byte size.
@@ -649,17 +679,21 @@ extension String {
      * nil-safe variant of setString:
      * nil will be interpreted as @"" instead of throwing an exception
      */
+    /*
     func setStringOrNil(_ aString: String?) {
         self = (aString != nil ? aString : "")
     }
+    */
 
     /**
      * nil-safe variant of appendString: 
      * nil will be interpreted as @"" instead of throwing an exception
      */
+    /*
     func appendOrNil(_ aString: String?) {
         self += (aString != nil ? aString : "") ?? ""
     }
+    */
 }
 
 /**

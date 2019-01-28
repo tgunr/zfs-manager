@@ -27,6 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 //  More info at <https://github.com/sequelpro/sequelpro>
+import Foundation
 
 class SPSingleton: NSObject {
     /**
@@ -40,14 +41,8 @@ class SPSingleton: NSObject {
         return self
     }
 
-    func retainCount() -> Int {
-        return Int(UInt.max)
-    }
-
     func autorelease() -> Any? {
         return self
     }
 
-    func release() {
-    }
 }

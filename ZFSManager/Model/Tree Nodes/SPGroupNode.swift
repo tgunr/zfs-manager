@@ -35,6 +35,8 @@
  *
  * Tree node that represents a group.
  */
+import Foundation
+
 // Constants
 private var SPGroupNodeNameKey = "SPGroupNodeName"
 private var SPGroupNodeIsExpandedKey = "SPGroupNodeIsExpanded"
@@ -43,7 +45,12 @@ class SPGroupNode: NSObject, NSCopying, NSCoding, SPNamedNode {
     /**
      * @property nodeName The group node's name
      */
-    var nodeName = ""
+    var _nodeName = ""
+
+    func nodeName() -> String? {
+        return _nodeName
+    }
+    
     /**
      * @property nodeIsExpanded Indicates whether the group node is expanded
      */
@@ -51,11 +58,13 @@ class SPGroupNode: NSObject, NSCopying, NSCoding, SPNamedNode {
 
     convenience init(name: String) {
         //if self.init()
-        nodeName = name
+        self.init()
+        _nodeName = name
     }
 
     convenience init(dictionary dict: [AnyHashable : Any]) {
         //if (self.init(name: dict[SPFavoritesGroupNameKey] as? String ?? ""))
+        self.init()
         self.nodeIsExpanded = (dict[SPFavoritesGroupIsExpandedKey] as? NSNumber)?.boolValue ?? false
     }
 
@@ -63,60 +72,62 @@ class SPGroupNode: NSObject, NSCopying, NSCoding, SPNamedNode {
         self.init(name: name ?? "")
     }
 
-    convenience init(dictionary dict: [AnyHashable : Any]?) {
-        if let dict = dict {
-            self.init(dictionary: dict)
-        }
-        return nil
-    }
-
+//    convenience init(dictionary dict: [AnyHashable : Any]?) {
+//        if let dict = dict {
+//            self.init(dictionary: dict)
+//        }
+//        return nil
+//    }
+//
 // MARK: -
 // MARK: Initialisation
     override init() {
         //if super.init()
-        nodeName = nil
+        _nodeName = ""
         self.nodeIsExpanded = true
     }
 
 // MARK: -
 // MARK: Copying protocol methods
     func copy(with zone: NSZone? = nil) -> Any {
-        let node = alloc(with: zone)() as? SPGroupNode
+        let node = SPGroupNode()
 
-        node?.nodeName = nodeName()
-        node?.nodeIsExpanded = nodeIsExpanded
+        node._nodeName = self._nodeName
+        node.nodeIsExpanded = self.nodeIsExpanded
 
-        return node!
+        return node as Any
     }
 
+    
 // MARK: -
 // MARK: Coding protocol methods
-    required init?(coder coder: NSCoder) {
+    required init?(coder: NSCoder) {
         #if false
         if !super.init() {
             return nil
         }
         #endif
 
-        nodeName = coder.decodeObject(forKey: SPGroupNodeNameKey) as? String ?? ""
+        _nodeName = coder.decodeObject(forKey: SPGroupNodeNameKey) as? String ?? ""
         self.nodeIsExpanded = (coder.decodeObject(forKey: SPGroupNodeIsExpandedKey) as? NSNumber)?.boolValue ?? false
     }
 
     func encode(with coder: NSCoder) {
-        coder.encode(nodeName(), forKey: SPGroupNodeNameKey)
-        coder.encode(NSNumber(value: nodeIsExpanded), forKey: SPGroupNodeIsExpandedKey)
+        coder.encode(_nodeName, forKey: SPGroupNodeNameKey)
+        coder.encode(nodeIsExpanded, forKey: SPGroupNodeIsExpandedKey)
     }
 
 // MARK: -
 // MARK: Other
     override class func description() -> String {
-        return String(format: "<%@: %p ('%@', %@)>", className, self, nodeName(), NSNumber(value: nodeIsExpanded))
+        return String(format: "<%@: %p>", className(), self as! CVarArg)
     }
 
 // MARK: -
     deinit {
-        if nodeName != "" {
-            SPClear(nodeName)
+        if _nodeName != "" {
+            SPClear(addr: _nodeName)
         }
     }
+    
 }

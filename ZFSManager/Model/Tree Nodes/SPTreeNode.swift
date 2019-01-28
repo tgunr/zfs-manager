@@ -1,33 +1,5 @@
 //
 //  SPTreeNode.swift
-//  sequel-pro
-//
-//  Created by Stuart Connolly (stuconnolly.com) on November 23, 2010.
-//  Copyright (c) 2010 Stuart Connolly. All rights reserved.
-//
-//  Permission is hereby granted, free of charge, to any person
-//  obtaining a copy of this software and associated documentation
-//  files (the "Software"), to deal in the Software without
-//  restriction, including without limitation the rights to use,
-//  copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the
-//  Software is furnished to do so, subject to the following
-//  conditions:
-//
-//  The above copyright notice and this permission notice shall be
-//  included in all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-//  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-//  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-//  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-//  OTHER DEALINGS IN THE SOFTWARE.
-//
-//  More info at <https://github.com/sequelpro/sequelpro>
-
 /**
  * @class SPTreeNode SPTreeNode.h
  *
@@ -35,71 +7,79 @@
  *
  * NSTreeNode subclass which adds some convenience methods.
  */
+
+import AppKit
+
 // Constants
 private var SPTreeNodeIsGroupKey = "SPTreeNodeIsGroup"
 
 class SPTreeNode: NSTreeNode, NSCoding {
-    private(set) var childNodes: [SPTreeNode]?
+    var nodes: [SPTreeNode]?
     /**
      * @property isGroup Indicates whether or not the node is a group.
      */
     var isGroup = false
 
     func removeObject(fromChildren object: Any?) {
-        for node: SPTreeNode? in children ?? [] {
+        for node in children ?? [] {
             if node == (object as? SPTreeNode) {
-                mutableChildren = mutableChildren.filter({ ($0) as AnyObject !== (object) as AnyObject })
+                let thisNode = node as! SPTreeNode
+                let thisNodeMutable = thisNode.mutableChildren.filter({ ($0) as AnyObject !== (object) as AnyObject })
+                let nodeIndex = children?.firstIndex(of: thisNode)
+                self.mutableChildren.replaceObject(at: nodeIndex!, with: thisNodeMutable)
                 return
             }
-
-            if node?.isGroup != nil {
-                node?.removeObject(fromChildren: object)
+            let thisNode = node as! SPTreeNode
+            if thisNode.isGroup {
+                thisNode.removeObject(fromChildren: object)
             }
         }
     }
 
     func descendants() -> [AnyHashable]? {
         var descendants: [AnyHashable] = []
-
-        for node: SPTreeNode? in children ?? [] {
-            if let node = node {
-                descendants.append(node)
+        let theChildren: [AnyHashable?] = children ?? []
+        
+        for node in theChildren {
+            if node != nil {
+                descendants.append(node!)
             }
-
-            if node?.isGroup != nil {
-                if let descendants = node?.descendants() {
-                    descendants.append(contentsOf: descendants)
+            
+            if node is SPTreeNode {
+                let thisNode = node as! SPTreeNode
+                if thisNode.isGroup {
+                    if let thisNodeDescendants = thisNode.descendants() {
+                        descendants.append(contentsOf: thisNodeDescendants)
+                    }
                 }
             }
         }
-
+        
         return descendants
     }
 
     func childLeafs() -> [AnyHashable]? {
         var childLeafs: [AnyHashable] = []
-
-        for node: SPTreeNode? in children ?? [] {
-            if node?.isGroup == nil {
-                if let node = node {
-                    childLeafs.append(node)
-                }
+        
+        for node in children ?? [] {
+            let thisNode = node as! SPTreeNode
+            if thisNode.isGroup {
+                childLeafs.append(thisNode)
             }
         }
-
+        
         return childLeafs
     }
 
     func allChildLeafs() -> [AnyHashable]? {
         var childLeafs: [AnyHashable] = []
 
-        for node: SPTreeNode? in children ?? [] {
-            if node?.isGroup == nil {
-                if let node = node {
-                    childLeafs.append(node)
-                }
+        for node in children ?? [] {
+            let thisNode = node as! SPTreeNode
+            if thisNode.isGroup {
+                    childLeafs.append(thisNode)
             } else {
-                if let all = node?.allChildLeafs() {
+                if let all = thisNode.allChildLeafs() {
                     childLeafs.append(contentsOf: all)
                 }
             }
@@ -110,33 +90,32 @@ class SPTreeNode: NSTreeNode, NSCoding {
 
     func groupChildren() -> [AnyHashable]? {
         var groupChildren: [AnyHashable] = []
-
-        for node: SPTreeNode? in children ?? [] {
-            if node?.isGroup != nil {
-                if let node = node {
-                    groupChildren.append(node)
-                }
+        
+        for node in children ?? [] {
+            let thisNode = node as! SPTreeNode
+            if thisNode.isGroup {
+                groupChildren.append(thisNode)
             }
         }
-
+    
         return groupChildren
     }
 
-    func parent(fromArray array: [Any]?) -> SPTreeNode? {
+    func parent(fromArray array: [SPTreeNode]?) -> SPTreeNode? {
         var result: SPTreeNode? = nil
-
-        for node: SPTreeNode? in array as? [SPTreeNode?] ?? [] {
+        for node in array ?? [] {
             if node == self {
                 break
             }
 
-            if (node?.children as NSArray?)?.indexOfObjectIdentical(to: self) != NSNotFound {
+            if (node.children as NSArray?)?.indexOfObjectIdentical(to: self) != NSNotFound {
                 result = node
                 break
             }
 
-            if node?.isGroup != nil {
-                let innerNode: SPTreeNode? = parent(fromArray: node?.children)
+            let thisNode = node
+            if thisNode.isGroup {
+                let innerNode: SPTreeNode? = parent(fromArray: thisNode.children as? [SPTreeNode])
 
                 if innerNode != nil {
                     result = innerNode
@@ -148,15 +127,15 @@ class SPTreeNode: NSTreeNode, NSCoding {
         return result
     }
 
-    func isDescendantOfOrOne(ofNodes nodes: [Any]?) -> Bool {
-        for node: SPTreeNode? in nodes as? [SPTreeNode?] ?? [] {
+    func isDescendantOfOrOne(ofNodes nodes: [SPTreeNode]?) -> Bool {
+        for node: SPTreeNode? in nodes ?? [] {
             if node == self {
                 return true
             }
 
             // Check all the sub-nodes
             if node?.isGroup != nil {
-                if isDescendantOfOrOne(ofNodes: node?.children) {
+                if isDescendantOfOrOne(ofNodes: node?.children as? [SPTreeNode]) {
                     return true
                 }
             }
@@ -165,15 +144,15 @@ class SPTreeNode: NSTreeNode, NSCoding {
         return false
     }
 
-    func isDescendantOfNodes(_ nodes: [Any]?) -> Bool {
-        for node: SPTreeNode? in nodes as? [SPTreeNode?] ?? [] {
+    func isDescendantOfNodes(_ nodes: [SPTreeNode]?) -> Bool {
+        for node: SPTreeNode? in nodes ?? [] {
             if node == self {
                 continue
             }
 
             // Check all the sub-nodes
             if node?.isGroup != nil {
-                if isDescendantOfOrOne(ofNodes: node?.children) {
+                if isDescendantOfOrOne(ofNodes: node?.children as? [SPTreeNode]) {
                     return true
                 }
             }
@@ -182,48 +161,60 @@ class SPTreeNode: NSTreeNode, NSCoding {
         return false
     }
 
-    func dictionaryRepresentation() -> [AnyHashable : ObjectType] {
+    func dictionaryRepresentation() -> [AnyHashable : Any] {
         var dictionary: [AnyHashable : Any]? = nil
 
-        let object = representedObject
+        let object = self.representedObject
 
         if (object is SPFavoriteNode) {
-
-            dictionary = object?.nodeFavorite()
+            let favoriteObject = object as! SPFavoriteNode
+            dictionary = favoriteObject.nodeFavorite
         } else if (object is SPGroupNode) {
 
-            var children: [AnyHashable] = []
-
-            for node: SPTreeNode? in self.children ?? [] {
-                let representation = node?.dictionaryRepresentation()
-
+            var newChildren: [AnyHashable] = []
+            let theChildren = self.children as? [SPTreeNode] ?? []
+            for aNode: SPTreeNode? in theChildren  {
+                let representation = aNode?.dictionaryRepresentation()
                 if representation != nil {
-                    if let representation = representation {
-                        children.append(representation)
-                    }
+                    newChildren.append(representation as! AnyHashable)
                 }
             }
 
+            let favoriteObject = object as? SPFavoriteNode
             dictionary = [AnyHashable : Any]()
+            var aName: String?
+            let myParent = self.parent
+            if myParent != nil {
+                aName = NSLocalizedString("Favorites", comment: "favorites label")
+            } else {
+                aName = favoriteObject?.nodeName()
+            }
 
-            let name = (!parent!) != nil ? NSLocalizedString("Favorites", comment: "favorites label") : object?.nodeName
-
-            dictionary?[SPFavoritesGroupNameKey] = name != nil ? name : ""
-            dictionary?[SPFavoritesGroupIsExpandedKey] = NSNumber(value: object?.nodeIsExpanded() != nil)
-            dictionary?[SPFavoriteChildrenKey] = children
+            dictionary?[SPFavoritesGroupNameKey] = aName != nil ? aName : ""
+            if object is SPGroupNode {
+                dictionary?[SPFavoritesGroupIsExpandedKey] = NSNumber(value: (object as! SPGroupNode).nodeIsExpanded)
+            } else {
+                dictionary?[SPFavoritesGroupIsExpandedKey] = NSNumber(value: 0)
+            }
+            dictionary?[SPFavoriteChildrenKey] = newChildren
         }
 
-        return dictionary as? [AnyHashable : ObjectType] ?? [:]
+        return dictionary ?? [:]
     }
 
 // MARK: -
 // MARK: Initialisation
-    convenience init(representedObject object: Any?) {
-        self.init(representedObject: object)
+//    override init(representedObject object: Any?) {
+//        self.init(representedObject: object)
+//    }
+
+    init(representedObject object: Any?, isGroup: Bool) {
+        super.init()
+        self.isGroup = isGroup
     }
 
     override init(representedObject object: Any?) {
-        //if super.init(representedObject: object)
+        super.init(representedObject: object)
         self.isGroup = object is SPGroupNode
     }
 
@@ -291,13 +282,8 @@ class SPTreeNode: NSTreeNode, NSCoding {
      */
 // MARK: -
 // MARK: Coding protocol methods
-    required init?(coder coder: NSCoder) {
-        #if false
-        if !super.init() {
-            return nil
-        }
-        #endif
-
+    required init?(coder: NSCoder) {
+        super.init()
         self.isGroup = (coder.decodeObject(forKey: SPTreeNodeIsGroupKey) as? NSNumber)?.boolValue ?? false
     }
 
@@ -307,18 +293,18 @@ class SPTreeNode: NSTreeNode, NSCoding {
 
 // MARK: -
 // MARK: Other
-    override class func description() -> String {
+    func description() -> String {
         var description = ""
-
-        description += representedObject?.description() ?? ""
+//        description += self.description()
+        description += (representedObject as? SPTreeNode)?.description() ?? ""
         description += "\n"
 
-        let nodes = children
+        let theNodes = self.children as? [SPTreeNode] ?? []
 
-        for i in 0..<(nodes?.count ?? 0) {
-            let node: SPTreeNode? = nodes?[i]
-
-            description += (node?.isGroup) != nil ? node?.description : node?.representedObject?.description() ?? ""
+        for i in 0..<(theNodes.count ) {
+            let aNode: SPTreeNode? = theNodes[i]
+            
+            description += (aNode?.isGroup) != nil ? aNode?.description ?? "" : (aNode?.representedObject as! SPGroupNode).description
 
             if i < ((nodes?.count ?? 0) - 1) {
                 description += "\n"

@@ -1,5 +1,5 @@
 //
-//  ZFSFavoritesController.swift
+//  SPFavoritesController.swift
 //  sequel-pro
 //
 //  Created by Stuart Connolly (stuconnolly.com) on November 10, 2010.
@@ -28,17 +28,19 @@
 //
 //  More info at <https://github.com/sequelpro/sequelpro>
 
-private var sharedFavoritesController: ZFSFavoritesController? = nil
+import Foundation
+
+private var sharedFavoritesController: SPFavoritesController? = nil
 
 /**
- * @class ZFSFavoritesController ZFSFavoritesController.h
+ * @class SPFavoritesController SPFavoritesController.h
  *
  * @author Stuart Connolly http://stuconnolly.com/
  *
  * Connection favorites controller that provides a single point of access for managing the user's connection
  * favorites in memory and on disk.
  */
-class ZFSFavoritesController: ZFSSingleton {
+class SPFavoritesController: SPSingleton {
     var writeLock: pthread_mutex_t?
     var favoritesLock: pthread_mutex_t?
 
@@ -55,7 +57,7 @@ class ZFSFavoritesController: ZFSSingleton {
         let lockQueue = DispatchQueue(label: "self")
         lockQueue.sync {
             if sharedFavoritesController == nil {
-                sharedFavoritesController = super.alloc(with: nil)() as? SPFavoritesController
+                sharedFavoritesController = SPFavoritesController()
             }
         }
 
@@ -63,15 +65,14 @@ class ZFSFavoritesController: ZFSSingleton {
     }
 
     func saveFavorites() {
-        pthread_mutex_lock(&favoritesLock)
-
-        Thread.detachNewThread(withName: "SPFavoritesController background favorite save task", target: self, selector: #selector(SPFavoritesController._saveFavoritesData(_:)), object: favoritesTree?.children?[0].dictionaryRepresentation())
-
-        pthread_mutex_unlock(&favoritesLock)
+        pthread_mutex_lock(&favoritesLock!)
+        Thread.detachNewThreadSelector(#selector(SPFavoritesController._saveFavoritesData(_:)), toTarget: self, with: favoritesTree?.children?[0].representedObject)
+        
+        pthread_mutex_unlock(&favoritesLock!)
     }
 
     func saveFavoritesSynchronously() {
-        _saveFavoritesData(favoritesTree?.children?[0].dictionaryRepresentation())
+        _saveFavoritesData(favoritesTree?.children?[0].representedObject as? [AnyHashable : Any])
     }
 
     func reloadFavorites(withSave save: Bool) {
@@ -116,41 +117,35 @@ class ZFSFavoritesController: ZFSSingleton {
     }
 
     private func _loadFavorites() {
-        pthread_mutex_lock(&favoritesLock)
+        pthread_mutex_lock(&favoritesLock!)
 
         var error: Error? = nil
         let fileManager = FileManager.default
 
         //if favoritesData
-        SPClear(favoritesData)
+        SPClear(addr: favoritesData)
+        let dataPath = AppDelegate.dataSupport()
 
-        let dataPath = try? fileManager.applicationSupportDirectory(forSubDirectory: SPDataSupportFolder)
-
-        if error != nil {
-            print("Error retrieving data directory path: \(error?.localizedDescription ?? "")")
-        }
-
-        let favoritesFile = URL(fileURLWithPath: dataPath ?? "").appendingPathComponent(SPFavoritesDataFile).absoluteString
+        let favoritesFile = URL(fileURLWithPath: dataPath).appendingPathComponent(SPFavoritesDataFile).absoluteString
 
         // If the favorites data file already exists use it, otherwise create an empty one
         if fileManager.fileExists(atPath: favoritesFile) {
-            favoritesData = NSDictionary(contentsOfFile: favoritesFile) as [AnyHashable : Any]
+            favoritesData = NSDictionary(contentsOfFile: favoritesFile) as! [AnyHashable : Any]
         } else {
-            var newFavorites = [SPFavoritesRootKey : [
+            let newFavorites = [SPFavoritesRootKey : [
                 SPFavoritesGroupNameKey : NSLocalizedString("Favorites", comment: "favorites label"),
                 SPFavoriteChildrenKey : []
             ]]
 
             error = nil
-
-            let plistData: Data? = try? PropertyListSerialization.data(fromPropertyList: newFavorites, format: .xml, options: [])
+            
+            let plistData = try? PropertyListSerialization.data(fromPropertyList:newFavorites, format: .xml, options: 0) as NSData
             if error != nil {
                 if let error = error {
                     print("Error converting default favorites data to plist format: \(error)")
                 }
-            } else if plistData != nil {
+            } else {
                 try? plistData?.write(toFile: favoritesFile, options: .atomicWrite)
-
                 if error != nil {
                     if let error = error {
                         print("Error writing default favorites data: \(error)")
@@ -163,7 +158,7 @@ class ZFSFavoritesController: ZFSSingleton {
     }
 
     private func _constructFavoritesTree() {
-        pthread_mutex_lock(&favoritesLock)
+        pthread_mutex_lock(&favoritesLock!)
 
         #if false
         if !favoritesData {
@@ -175,7 +170,7 @@ class ZFSFavoritesController: ZFSSingleton {
         let root = favoritesData[SPFavoritesRootKey] as? [AnyHashable : Any]
 
         let rootGroupNode = SPGroupNode()
-        let favoritesGroupNode = SPGroupNode(name: root?[SPFavoritesGroupNameKey]?.uppercased() ?? "")
+        let favoritesGroupNode = SPGroupNode(name: (root?[SPFavoritesGroupNameKey] as! String).uppercased() ?? "")
 
         favoritesGroupNode.nodeIsExpanded = (root?[SPFavoritesGroupIsExpandedKey] as? NSNumber)?.boolValue ?? false
 
@@ -189,20 +184,20 @@ class ZFSFavoritesController: ZFSSingleton {
             let node: SPTreeNode? = _constructBranch(forNodeData: favorite)
 
             if let node = node {
-                favoritesNode.mutableChildren.append(node)
+                favoritesNode.mutableChildren.add(node)
             }
         }
 
-        rootNode.mutableChildren.append(favoritesNode)
+        rootNode.mutableChildren.add(favoritesNode)
 
         favoritesTree = rootNode
 
-        pthread_mutex_unlock(&favoritesLock)
+        pthread_mutex_unlock(&favoritesLock!)
     }
 
     @objc private func _saveFavoritesData(_ data: [AnyHashable : Any]?) {
         autoreleasepool {
-            pthread_mutex_lock(&writeLock)
+            pthread_mutex_lock(&writeLock!)
 
             if favoritesTree == nil {
             }
@@ -222,7 +217,7 @@ class ZFSFavoritesController: ZFSSingleton {
 
             var plistData: Data? = nil
             if let dictionary = dictionary {
-                plistData = try? PropertyListSerialization.data(fromPropertyList: dictionary, format: .xml, options: [])
+                plistData = try? PropertyListSerialization.data(fromPropertyList: dictionary, format: .xml, options:0)
             }
             if error != nil {
                 if let error = error {
@@ -232,14 +227,14 @@ class ZFSFavoritesController: ZFSSingleton {
 
             let fileManager = FileManager.default
 
-            let dataPath = try? fileManager.applicationSupportDirectory(forSubDirectory: SPDataSupportFolder)
+            let dataPath = AppDelegate.dataSupport()
 
-            if error != nil {
-                print("Error retrieving data directory path: \(error?.localizedDescription ?? "")")
-            }
+            let favoritesFileURL: URL = URL(fileURLWithPath: dataPath).appendingPathComponent(SPFavoritesDataFile)
+            let favoritesFile: String = favoritesFileURL.absoluteString
 
-            let favoritesFile = URL(fileURLWithPath: dataPath ?? "").appendingPathComponent(SPFavoritesDataFile).absoluteString
-            let favoritesBackupFile = URL(fileURLWithPath: dataPath ?? "").appendingPathComponent(String()).absoluteString
+            let uuid = UUID().uuidString
+            let favoritesBackupFileURL: URL = URL(fileURLWithPath: dataPath).appendingPathComponent(uuid)
+            let favoritesBackupFile: String = favoritesBackupFileURL.absoluteString
 
             // If the favorites data file already exists, attempt to move it to keep as a backup
             if fileManager.fileExists(atPath: favoritesFile) {
@@ -258,8 +253,7 @@ class ZFSFavoritesController: ZFSSingleton {
             }
 
             // Write the converted data to the favourites file
-            try? plistData?.write(toFile: favoritesFile, options: .atomicWrite)
-
+            try? plistData?.write(to: favoritesFileURL)
             if error != nil {
                 print("Error writing favorites data. Restoring backup if available: \(error?.localizedDescription ?? "")")
 
@@ -280,13 +274,9 @@ class ZFSFavoritesController: ZFSSingleton {
 
     private func _add(_ node: SPTreeNode?, asChildOf parent: SPTreeNode?) {
         if parent != nil {
-            if let node = node {
-                parent?.mutableChildren.append(node)
-            }
+            parent?.mutableChildren.add(node as Any)
         } else {
-            if let node = node {
-                favoritesTree?.mutableChildren[0]?.mutableChildren.append(node)
-            }
+            (favoritesTree?.mutableChildren[0] as! SPTreeNode).mutableChildren.add(node!)
         }
     }
 
@@ -298,7 +288,7 @@ class ZFSFavoritesController: ZFSSingleton {
 
             node = SPGroupNode(name: nodeData?[SPFavoritesGroupNameKey] as? String ?? "")
 
-            node?.nodeIsExpanded = (nodeData?[SPFavoritesGroupIsExpandedKey] as? NSNumber)?.boolValue ?? false
+            (node as! SPGroupNode?)!.nodeIsExpanded = (nodeData?[SPFavoritesGroupIsExpandedKey] as? NSNumber)?.boolValue ?? false
 
             treeNode = SPTreeNode(representedObject: node)
 
@@ -308,12 +298,11 @@ class ZFSFavoritesController: ZFSSingleton {
                 let innerNode: SPTreeNode? = _constructBranch(forNodeData: favorite)
 
                 if let innerNode = innerNode {
-                    treeNode?.mutableChildren.append(innerNode)
+                    treeNode?.mutableChildren.add(innerNode)
                 }
             }
         } else {
             node = SPFavoriteNode(dictionary: nodeData)
-
             treeNode = SPTreeNode(representedObject: node)
         }
 
@@ -325,7 +314,7 @@ class ZFSFavoritesController: ZFSSingleton {
         var childs: [Any]? = nil
         //if it has "Children" it must be a group node, otherwise assume favorite node
         if data?[SPFavoriteChildrenKey] != nil {
-            object = SPGroupNode(dictionary: data)
+            object = SPGroupNode(dictionary: data ?? [:])
             childs = data?[SPFavoriteChildrenKey] as? [Any]
         } else {
             object = SPFavoriteNode(dictionary: data)
@@ -357,12 +346,12 @@ class ZFSFavoritesController: ZFSSingleton {
     }
 
     override init() {
-        //if super.init()
+        super.init()
         favoritesTree = nil
-        favoritesData = nil
+        favoritesData = [:]
 
-        pthread_mutex_init(&writeLock, nil)
-        pthread_mutex_init(&favoritesLock, nil)
+        pthread_mutex_init(&writeLock!, nil)
+        pthread_mutex_init(&favoritesLock!, nil)
 
         _loadFavorites()
         _constructFavoritesTree()
@@ -453,12 +442,12 @@ class ZFSFavoritesController: ZFSSingleton {
 // MARK: -
     deinit {
         if favoritesTree != nil {
-            SPClear(favoritesTree)
+            SPClear(addr: favoritesTree)
         }
         //if favoritesData
-        SPClear(favoritesData)
+        SPClear(addr: favoritesData)
 
-        pthread_mutex_destroy(&writeLock)
-        pthread_mutex_destroy(&favoritesLock)
+        pthread_mutex_destroy(&writeLock!)
+        pthread_mutex_destroy(&favoritesLock!)
     }
 }

@@ -21,6 +21,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    class func applicationSupport() -> String {
+        var appSupportDir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.absoluteString
+//        if error != nil {
+//            print("Error retrieving data directory path: \(error?.localizedDescription ?? "")")
+//        }
+        if appSupportDir != nil {
+            let appBundleID = Bundle.main.bundleIdentifier
+            appSupportDir = appSupportDir?.appending(appBundleID ?? "")
+        }
 
+        return appSupportDir!
+    }
+    
+    class func dataSupport() -> String {
+        let dataPath = applicationSupport().appending(SPDataSupportFolder)
+        return dataPath
+    }
 }
 

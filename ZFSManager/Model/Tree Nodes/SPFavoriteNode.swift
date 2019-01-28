@@ -35,10 +35,12 @@
  *
  * Tree node that represents a connection favorite.
  */
+import Foundation
+
 // Constants
 private var SPFavoriteNodeKey = "SPFavoriteNode"
 
-class SPFavoriteNode: NSObject, NSCopying, NSCoding, SPNamedNode {
+class SPFavoriteNode: NSObject, NSCopying, NSCoding {
     /**
      * @property nodeFavorite The actual favorite dictionary
      */
@@ -46,33 +48,32 @@ class SPFavoriteNode: NSObject, NSCopying, NSCoding, SPNamedNode {
 
     convenience init(dictionary: [AnyHashable : Any]) {
         //if self.init()
+        self.init()
         self.nodeFavorite = dictionary
     }
 
     convenience init(dictionary: [AnyHashable : Any]?) {
-        if let dictionary = dictionary {
             self.init(dictionary: dictionary)
-        }
-        return nil
     }
 
 // MARK: -
 // MARK: Initialisation
     override init() {
         //if super.init()
-        self.nodeFavorite = nil
+        self.nodeFavorite = [:]
     }
 
 // MARK: -
 // MARK: Copying protocol methods
     func copy(with zone: NSZone? = nil) -> Any {
-        let node = alloc(with: zone)() as? SPFavoriteNode
+        let node = SPFavoriteNode()
+//        let anode = alloc(with: zone)() as? SPFavoriteNode
 
-        if let copy = nodeFavorite.copy(with: zone) as? [AnyHashable : Any] {
-            node?.nodeFavorite = copy
+        if let copy = node.copy(with: zone) as? [AnyHashable : Any] {
+            node.nodeFavorite = copy
         }
 
-        return node!
+        return node
     }
 
 // MARK: -
@@ -96,7 +97,8 @@ class SPFavoriteNode: NSObject, NSCopying, NSCoding, SPNamedNode {
 // MARK: -
 // MARK: Other
     override class func description() -> String {
-        return String(format: "<%@: %p ('%@')>", className, self, nodeName() ?? "")
+        return super.description()
+//        return String(format: "<%@: %p ('%@')>", className, self, nodeName() ?? "")
     }
 
     func nodeName() -> String? {
@@ -106,6 +108,6 @@ class SPFavoriteNode: NSObject, NSCopying, NSCoding, SPNamedNode {
 // MARK: -
     deinit {
         //if nodeFavorite
-        SPClear(nodeFavorite)
+        SPClear(addr: nodeFavorite)
     }
 }
