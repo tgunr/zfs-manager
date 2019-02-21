@@ -5,18 +5,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="BeI-oB-Prs">
             <objects>
-                <viewController id="DF6-a1-3fg" sceneMemberID="viewController">
+                <viewController id="DF6-a1-3fg" customClass="ZFSMainViewController" customModule="ZFSManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="IQL-vy-UJH">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="678"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="oIg-3o-K9f" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-425" y="1441"/>
+            <point key="canvasLocation" x="-491" y="1334"/>
         </scene>
     </scenes>
 </document>
