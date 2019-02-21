@@ -14,7 +14,7 @@
 		7547CD8721F8B5C400248D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7547CD8621F8B5C400248D07 /* Assets.xcassets */; };
 		7547CD8A21F8B5C400248D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7547CD8821F8B5C400248D07 /* Main.storyboard */; };
 		75A63C2E21F8E19600248D07 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A63C2D21F8E19600248D07 /* Connection.swift */; };
-		75A63C3021F8E49700248D07 /* ConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A63C2F21F8E49700248D07 /* ConnectionController.swift */; };
+		75A63C3021F8E49700248D07 /* ZFSConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A63C2F21F8E49700248D07 /* ZFSConnectionController.swift */; };
 		75A63CB421F8E95600248D07 /* link-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A63C3221F8E95500248D07 /* link-arrow@2x.png */; };
 		75A63CB521F8E95600248D07 /* toolbar-preferences-notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A63C3321F8E95500248D07 /* toolbar-preferences-notifications.png */; };
 		75A63CB621F8E95600248D07 /* toolbar-preferences-shortcuts.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A63C3421F8E95500248D07 /* toolbar-preferences-shortcuts.png */; };
@@ -186,7 +186,7 @@
 		7547CD8B21F8B5C400248D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZFSManager.entitlements; sourceTree = "<group>"; };
 		75A63C2D21F8E19600248D07 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
-		75A63C2F21F8E49700248D07 /* ConnectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionController.swift; sourceTree = "<group>"; };
+		75A63C2F21F8E49700248D07 /* ZFSConnectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFSConnectionController.swift; sourceTree = "<group>"; };
 		75A63C3221F8E95500248D07 /* link-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link-arrow@2x.png"; sourceTree = "<group>"; };
 		75A63C3321F8E95500248D07 /* toolbar-preferences-notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-preferences-notifications.png"; sourceTree = "<group>"; };
 		75A63C3421F8E95500248D07 /* toolbar-preferences-shortcuts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-preferences-shortcuts.png"; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 				7547CD8B21F8B5C400248D07 /* Info.plist */,
 				7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */,
 				75A63C2D21F8E19600248D07 /* Connection.swift */,
-				75A63C2F21F8E49700248D07 /* ConnectionController.swift */,
+				75A63C2F21F8E49700248D07 /* ZFSConnectionController.swift */,
 				75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */,
 				75A63D4321F939D300248D07 /* SPFavoritesController.swift */,
 				5AF0D42AEDD569D540C1D969 /* ZFSSplitView.swift */,
@@ -875,7 +875,7 @@
 				75A7F35E22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift in Sources */,
 				75A7F35021FB767300248D07 /* SPFavoriteNode.swift in Sources */,
 				75A7F4CE220068E800248D07 /* SPKeychain.swift in Sources */,
-				75A63C3021F8E49700248D07 /* ConnectionController.swift in Sources */,
+				75A63C3021F8E49700248D07 /* ZFSConnectionController.swift in Sources */,
 				7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */,
 				75A7F35721FFC90A00248D07 /* SPAlertSheets.swift in Sources */,
 				75A63D4621F93A8F00248D07 /* SPSingleton.swift in Sources */,
