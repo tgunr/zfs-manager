@@ -12,6 +12,8 @@
 		750216C4221F466A00248D07 /* ConnectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C3221F466A00248D07 /* ConnectionsController.swift */; };
 		750216C9221F4D4B00248D07 /* ZFSMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */; };
 		750216D0221F4E4700248D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216CD221F4E4700248D07 /* Main.storyboard */; };
+		750216D5221F507800248D07 /* ZFSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216D3221F507800248D07 /* ZFSMain.storyboard */; };
+		750216D6221F507800248D07 /* SSHConnection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216D4221F507800248D07 /* SSHConnection.storyboard */; };
 		7547CD8321F8B5C300248D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8221F8B5C300248D07 /* AppDelegate.swift */; };
 		7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8421F8B5C300248D07 /* ViewController.swift */; };
 		7547CD8721F8B5C400248D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7547CD8621F8B5C400248D07 /* Assets.xcassets */; };
@@ -183,6 +185,8 @@
 		750216C3221F466A00248D07 /* ConnectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsController.swift; sourceTree = "<group>"; };
 		750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainWindowController.swift; sourceTree = "<group>"; };
 		750216CE221F4E4700248D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		750216D3221F507800248D07 /* ZFSMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZFSMain.storyboard; sourceTree = "<group>"; };
+		750216D4221F507800248D07 /* SSHConnection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SSHConnection.storyboard; sourceTree = "<group>"; };
 		7547CD7F21F8B5C300248D07 /* ZFSManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZFSManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7547CD8221F8B5C300248D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7547CD8421F8B5C300248D07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -383,6 +387,8 @@
 		750216CC221F4E4700248D07 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				750216D3221F507800248D07 /* ZFSMain.storyboard */,
+				750216D4221F507800248D07 /* SSHConnection.storyboard */,
 				750216CD221F4E4700248D07 /* Main.storyboard */,
 			);
 			path = Storyboards;
@@ -726,6 +732,7 @@
 				75A63D3521F8E95600248D07 /* button_bar_spacer@2x.png in Resources */,
 				75A63D2521F8E95600248D07 /* button_edit_mode_selected.png in Resources */,
 				75A63D3121F8E95600248D07 /* table-view-small-square.png in Resources */,
+				750216D6221F507800248D07 /* SSHConnection.storyboard in Resources */,
 				75A63D2F21F8E95600248D07 /* button_remove@2x.png in Resources */,
 				75A63D2321F8E95600248D07 /* toolbar-switch-to-browse@2x.jpg in Resources */,
 				75A63CF821F8E95600248D07 /* link-arrow-highlighted-clicked@2x.png in Resources */,
@@ -819,6 +826,7 @@
 				75A63CDE21F8E95600248D07 /* toolbar-switch-to-procedures.png in Resources */,
 				75A63CC621F8E95600248D07 /* table-small-square@2x.png in Resources */,
 				75A63CE021F8E95600248D07 /* grabber-horizontal.png in Resources */,
+				750216D5221F507800248D07 /* ZFSMain.storyboard in Resources */,
 				75A63CBB21F8E95600248D07 /* table-small-square.png in Resources */,
 				75A63CD221F8E95600248D07 /* toolbar-export-xml.png in Resources */,
 				75A63D1621F8E95600248D07 /* toolbar-export-csv.png in Resources */,
