@@ -1,22 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="DF6-a1-3fg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vra-pz-6WZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.64"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
-        <scene sceneID="BeI-oB-Prs">
+        <!--ZFS-->
+        <scene sceneID="AeO-9A-otN">
             <objects>
-                <viewController id="DF6-a1-3fg" customClass="ZFSMainViewController" customModule="ZFSManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="IQL-vy-UJH">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="678"/>
+                <tabViewController title="ZFS" selectedTabViewItemIndex="2" id="Vra-pz-6WZ" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="Sg1-al-oXS"/>
+                        <tabViewItem id="6x6-cs-FhH"/>
+                        <tabViewItem identifier="" id="obt-2F-0o0"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="ZoV-23-Y2K">
+                        <rect key="frame" x="0.0" y="0.0" width="954" height="712"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="Vra-pz-6WZ" id="DDG-WY-XLp"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="ZoV-23-Y2K" id="cNw-TW-VTs"/>
+                        <segue destination="BRm-57-7I9" kind="relationship" relationship="tabItems" id="8sC-F9-Pme"/>
+                        <segue destination="pUM-T9-f5B" kind="relationship" relationship="tabItems" id="PRL-IV-Ohy"/>
+                        <segue destination="UWv-Fp-8pA" kind="relationship" relationship="tabItems" id="58C-e2-BoB"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="rqK-bN-cWC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-225" y="391"/>
+        </scene>
+        <!--Volumes-->
+        <scene sceneID="e0Y-04-gbE">
+            <objects>
+                <viewController title="Volumes" id="BRm-57-7I9" sceneMemberID="viewController">
+                    <view key="view" id="P9s-Gd-8fd">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="oIg-3o-K9f" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="pJw-rj-fOp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-491" y="1334"/>
+            <point key="canvasLocation" x="-106" y="1370"/>
+        </scene>
+        <!--Pools-->
+        <scene sceneID="oba-fA-h51">
+            <objects>
+                <viewController title="Pools" id="UWv-Fp-8pA" sceneMemberID="viewController">
+                    <view key="view" id="CLA-QB-Nhx">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Ozv-P1-DF6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-617" y="1370"/>
+        </scene>
+        <!--Snapshots-->
+        <scene sceneID="m3D-f9-EC4">
+            <objects>
+                <viewController title="Snapshots" id="pUM-T9-f5B" sceneMemberID="viewController">
+                    <view key="view" id="Y2L-Gn-8Si">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="FoD-UM-bbU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="388" y="1370"/>
         </scene>
     </scenes>
 </document>

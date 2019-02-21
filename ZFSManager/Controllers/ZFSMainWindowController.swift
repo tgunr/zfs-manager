@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ZFSMainViewController: NSViewController {
+class ZFSMainViewController: NSTabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
