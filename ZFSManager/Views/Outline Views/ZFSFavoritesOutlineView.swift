@@ -169,7 +169,7 @@ class ZFSFavoritesOutlineView: NSOutlineView {
      */
     override func highlightSelection(inClipRect clipRect: NSRect) {
         // Only proceed if a the delegate is a SPConnectionController and a favorite being edited
-        if (delegate is ConnectionController) && (delegate as? ConnectionController)?.isEditingConnection != nil && (delegate as? ConnectionController)?.selectedFavorite() != nil {
+        if (delegate is ZFSConnectionController) && (delegate as? ZFSConnectionController)?.isEditingConnection != nil && (delegate as? ZFSConnectionController)?.selectedFavorite() != nil {
 
             // Draw an editing dot instead of highlighting the whole row
             let rowRect: NSRect = rect(ofRow: selectedRow)

@@ -11,14 +11,21 @@ import Cocoa
 class ZFSFlippedView: NSView {
 }
 
-class ConnectionController: NSViewController, NSTableViewDelegate {
+class ZFSConnectionController: NSViewController, NSTableViewDelegate {
     var hostTable: NSTableView?
     
+    var keychain: SPKeychain?
+    var cancellingConnection = false
+    var isConnecting = false
+    var isEditingConnection = false
+    var isTestingConnection = false
+    weak var delegate: (SPConnectionControllerDelegateProtocol & NSObject)?
+
     @IBOutlet var connectionView: NSView!
     @IBOutlet weak var connectionSplitView: ZFSSplitView!
     @IBOutlet var connectionDetailsScrollView: NSScrollView!
     @IBOutlet var connectionInstructionsTextField: NSTextField!
-//    @IBOutlet var favoritesOutlineView: SPFavoritesOutlineView!
+    @IBOutlet var favoritesOutlineView: ZFSFavoritesOutlineView!
     @IBOutlet var errorDetailWindow: NSWindow!
     @IBOutlet var errorDetailText: NSTextView!
     @IBOutlet var connectionResizeContainer: NSView!
@@ -26,6 +33,7 @@ class ConnectionController: NSViewController, NSTableViewDelegate {
     @IBOutlet var standardConnectionSSLDetailsContainer: NSView!
     @IBOutlet var socketConnectionFormContainer: NSView!
     @IBOutlet var socketConnectionSSLDetailsContainer: NSView!
+    
     @IBOutlet var sshConnectionFormContainer: NSView!
     @IBOutlet var sshConnectionSSLDetailsContainer: NSView!
     @IBOutlet var sshKeyLocationHelp: NSView!
@@ -49,6 +57,7 @@ class ConnectionController: NSViewController, NSTableViewDelegate {
     @IBOutlet var sshPasswordField: NSSecureTextField!
     @IBOutlet var sshSSHPasswordField: NSSecureTextField!
     @IBOutlet var sshSSHKeyButton: NSButton!
+    @IBOutlet var sshKeyFile: NSTextField!
     @IBOutlet var standardSSLKeyFileButton: NSButton!
     @IBOutlet var standardSSLCertificateButton: NSButton!
     @IBOutlet var standardSSLCACertButton: NSButton!
@@ -111,9 +120,14 @@ class ConnectionController: NSViewController, NSTableViewDelegate {
     var connectionSSHKeychainItemName = ""
     var connectionSSHKeychainItemAccount = ""
     var useCompression = false
-    
-    private(set) var isConnecting = false
-    private(set) var isEditingConnection = false
+
+    let myAlerts = SPAlertSheets()
+    var myWindow: NSWindow?
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        myWindow = self.view.window
+    }
     
     func selectedFavorite() -> [AnyHashable : Any]? {
 //        let node: SPTreeNode? = selectedFavoriteNode()
@@ -121,5 +135,182 @@ class ConnectionController: NSViewController, NSTableViewDelegate {
 //        return (!node?.isGroup) ? (node?.representedObject as? SPFavoriteNode)?.nodeFavorite : nil
         return [:]
     }
+
+    // MARK: -
+    // MARK: Sheet methods
+    /**
+     * Alert sheet callback method - invoked when the error sheet is closed.
+     */
+    @objc func localhostErrorSheetDidEnd(_ alert: NSAlert?, returnCode: Int, contextInfo: UnsafeMutableRawPointer?) {
+        if returnCode == NSAlertAlternateReturn {
+            self.type = SPConnectionType.spSocketConnection.rawValue
+            self.host = ""
+        } else {
+            self.host = "127.0.0.1"
+        }
+    }
     
+    private func _checkHost() -> Bool {
+        if type != SPConnectionType.spSocketConnection.rawValue && (host == "localhost") {
+            myAlerts.SPBeginAlertSheet(
+                title: NSLocalizedString(
+                    "You have entered 'localhost' for a non-socket connection",
+                     comment: "title of error when using 'localhost' for a network connection"),
+                /* Main button */
+                defaultButton: NSLocalizedString("Use 127.0.0.1", comment: "Use 127.0.0.1 button"),
+                /* Alternate button */
+                alternateButton: NSLocalizedString("Connect via socket", comment: "Connect via socket button"),
+                /* Other button */
+                otherButton: nil,
+                /* Window to attach to */
+                docWindow: myWindow,
+                /* Modal delegate */
+                modalDelegate: self,
+                /* Did end selector */
+                didEndSelector: #selector(ZFSConnectionController.localhostErrorSheetDidEnd(_:returnCode:contextInfo:)),
+                /* Contextual info for selectors */
+                contextInfo: nil,
+                msg: NSLocalizedString(
+                    "To MySQL, 'localhost' is a special host and means that a socket connection should be used.\n\nDid you mean to use a socket connection, or to connect to the local machine via a port?  If you meant to connect via a port, '127.0.0.1' should be used instead of 'localhost'.",
+                    comment: "message of error when using 'localhost' for a network connection"))
+            return false
+        }
+        
+        return true
+    }
+    
+
+    @IBAction func initiateConnection(_ sender: Any) {
+        // If this action was triggered via a double-click on the favorites outline view,
+        // ensure that one of the connections was double-clicked, not the area above or below
+        if (sender is ZFSFavoritesOutlineView && favoritesOutlineView.clickedRow <= 0) {
+            return
+        }
+        
+        // If triggered via the "Test Connection" button, set the state - otherwise clear it
+        isTestingConnection = (sender as? NSButton) == testConnectButton
+        
+        
+        // Ensure that host is not empty if this is a TCP/IP or SSH connection
+        if (type == SPConnectionType.sptcpipConnection.rawValue || type == SPConnectionType.spsshTunnelConnection.rawValue) && host.count == 0 {
+            myAlerts.SPOnewayAlertSheet(title: NSLocalizedString("Insufficient connection details", comment: "insufficient details message"), docWindow: myWindow, msg: NSLocalizedString("Insufficient details provided to establish a connection. Please enter at least the hostname.", comment: "insufficient details informative message"))
+            return
+        }
+        
+        // If SSH is enabled, ensure that the SSH host is not nil
+        if type == SPConnectionType.spsshTunnelConnection.rawValue && sshHost.count == 0 {
+            myAlerts.SPOnewayAlertSheet(title: NSLocalizedString("Insufficient connection details", comment: "insufficient details message"), docWindow: myWindow, msg: NSLocalizedString("Insufficient details provided to establish a connection. Please enter the hostname for the SSH Tunnel, or disable the SSH Tunnel.", comment: "insufficient SSH tunnel details informative message"))
+            return
+        }
+        
+        // If an SSH key has been provided, verify it exists
+        if type == SPConnectionType.spsshTunnelConnection.rawValue && sshKeyLocationEnabled != 0 && sshKeyLocation != "" {
+            if !(FileManager.default.fileExists(atPath: (sshKeyLocation as NSString).expandingTildeInPath)) {
+                self.sshKeyLocationEnabled = NSControl.StateValue.off.rawValue
+                myAlerts.SPOnewayAlertSheet(title: NSLocalizedString("SSH Key not found", comment: "SSH key check error"), docWindow: myWindow, msg: NSLocalizedString("A SSH key location was specified, but no file was found in the specified location.  Please re-select the key and try again.", comment: "SSH key not found message"))
+                return
+            }
+        }
+        
+        // Ensure that a socket connection is not inadvertently used
+        if !_checkHost() {
+            return
+        }
+        
+        // If SSL keys have been supplied, verify they exist
+        if (type == SPConnectionType.sptcpipConnection.rawValue || type == SPConnectionType.spSocketConnection.rawValue) && useSSL != 0 {
+            
+            if sslKeyFileLocationEnabled != 0 && sslKeyFileLocation != "" && !(FileManager.default.fileExists(atPath: (sslKeyFileLocation as NSString).expandingTildeInPath)) {
+                self.sslKeyFileLocationEnabled = NSControl.StateValue.off.rawValue
+                self.sslKeyFileLocation = ""
+                
+                myAlerts.SPOnewayAlertSheet(title: NSLocalizedString("SSL Key File not found", comment: "SSL key file check error"), docWindow: myWindow, msg: NSLocalizedString("A SSL key file location was specified, but no file was found in the specified location.  Please re-select the key file and try again.", comment: "SSL key file not found message"))
+                
+                return
+            }
+            
+            if sslCertificateFileLocationEnabled != 0 && sslCertificateFileLocation != "" && !(FileManager.default.fileExists(atPath: (sslCertificateFileLocation as NSString).expandingTildeInPath)) {
+                self.sslCertificateFileLocationEnabled = NSControl.StateValue.off.rawValue
+                self.sslCertificateFileLocation = ""
+                
+                myAlerts.SPOnewayAlertSheet(title: NSLocalizedString("SSL Certificate File not found", comment: "SSL certificate file check error"), docWindow: myWindow, msg: NSLocalizedString("A SSL certificate location was specified, but no file was found in the specified location.  Please re-select the certificate and try again.", comment: "SSL certificate file not found message"))
+                
+                return
+            }
+            
+            if sslCACertFileLocationEnabled != 0 && sslCACertFileLocation != "" && !(FileManager.default.fileExists(atPath: (sslCACertFileLocation as NSString).expandingTildeInPath)) {
+                self.sslCACertFileLocationEnabled = NSControl.StateValue.off.rawValue
+                self.sslCACertFileLocation = ""
+                
+                myAlerts.SPOnewayAlertSheet(title: NSLocalizedString("SSL Certificate Authority File not found", comment: "SSL certificate authority file check error"), docWindow: myWindow, msg: NSLocalizedString("A SSL Certificate Authority certificate location was specified, but no file was found in the specified location.  Please re-select the Certificate Authority certificate and try again.", comment: "SSL CA certificate file not found message"))
+                
+                return
+            }
+        }
+        
+        // Basic details have validated - start the connection process animating
+        isConnecting = true
+        cancellingConnection = false
+        
+        #if !SP_CODA
+        // Disable the favorites outline view to prevent further connections attempts
+        favoritesOutlineView.isEnabled = false
+        
+        helpButton.isHidden = true
+        connectButton.isEnabled = false
+        testConnectButton.isEnabled = false
+        progressIndicator.startAnimation(self)
+        progressIndicatorText.isHidden = false
+        #endif
+        
+        // Start the current tab's progress indicator
+//        dbDocument?.isProcessing = true
+        
+        // If the password(s) are marked as having been originally sourced from a keychain, check whether they
+        // have been changed or not; if not, leave the mark in place and remove the password from the field
+        // for increased security.
+        #if !SP_CODA
+        if connectionKeychainItemName != "" && !isTestingConnection {
+            if (keychain?.getPasswordForName(connectionKeychainItemName, account: connectionKeychainItemAccount) == password) {
+                self.password = "".padding(toLength: password.count, withPad: "sp", startingAt: 0)
+                
+                standardPasswordField.undoManager?.removeAllActions(withTarget: standardPasswordField)
+                socketPasswordField.undoManager?.removeAllActions(withTarget: socketPasswordField)
+                sshPasswordField.undoManager?.removeAllActions(withTarget: sshPasswordField)
+            } else {
+                SPClear(addr: connectionKeychainItemName)
+                SPClear(addr: connectionKeychainItemAccount)
+            }
+        }
+        
+        if connectionSSHKeychainItemName != "" && !isTestingConnection {
+            if (keychain?.getPasswordForName(connectionSSHKeychainItemName, account: connectionSSHKeychainItemAccount) == sshPassword) {
+                self.sshPassword = "".padding(toLength: sshPassword.count, withPad: "sp", startingAt: 0)
+                sshSSHPasswordField.undoManager?.removeAllActions(withTarget: sshSSHPasswordField)
+            } else {
+                SPClear(addr: connectionSSHKeychainItemName)
+                SPClear(addr: connectionSSHKeychainItemAccount)
+            }
+        }
+        #endif
+        
+        // Inform the delegate that we are starting the connection process
+        if delegate != nil { // && delegate?.responds(to: #selector((SPConnectionControllerDelegateProtocol & NSObject).connectionControllerInitiatingConnection(_:))) ?? false {
+            delegate?.connectionControllerInitiatingConnection(self)
+        }
+        
+        // Trim whitespace and newlines from the host field before attempting to connect
+        self.host = host.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        // Initiate the SSH connection process for tunnels
+//        if type == SPConnectionType.spsshTunnelConnection.rawValue {
+//            perform(#selector(ZFSConnectionController.initiateSSHTunnelConnection), with: nil, afterDelay: 0.0)
+//
+//            return
+//        }
+        
+        // ...or start the MySQL connection process directly
+//        perform(#selector(ZFSConnectionController.initiateMySQLConnection), with: nil, afterDelay: 0.0)
+    }
+
 }

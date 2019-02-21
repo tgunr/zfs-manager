@@ -156,6 +156,10 @@
 		75A63D5121F9E3C200248D07 /* SPStringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A63D5021F9E3C200248D07 /* SPStringAdditions.swift */; };
 		75A7F35021FB767300248D07 /* SPFavoriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F34F21FB767300248D07 /* SPFavoriteNode.swift */; };
 		75A7F35221FB774A00248D07 /* SPNamedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F35121FB774A00248D07 /* SPNamedNode.swift */; };
+		75A7F35721FFC90A00248D07 /* SPAlertSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F35621FFC90A00248D07 /* SPAlertSheets.swift */; };
+		75A7F35A21FFC9CA00248D07 /* SPMainThreadTrampoline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F35921FFC9CA00248D07 /* SPMainThreadTrampoline.swift */; };
+		75A7F35E22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */; };
+		75A7F4CE220068E800248D07 /* SPKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F4CD220068E700248D07 /* SPKeychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -326,6 +330,11 @@
 		75A63D5221F9E74900248D07 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		75A7F34F21FB767300248D07 /* SPFavoriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPFavoriteNode.swift; sourceTree = "<group>"; };
 		75A7F35121FB774A00248D07 /* SPNamedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPNamedNode.swift; sourceTree = "<group>"; };
+		75A7F35621FFC90A00248D07 /* SPAlertSheets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPAlertSheets.swift; sourceTree = "<group>"; };
+		75A7F35921FFC9CA00248D07 /* SPMainThreadTrampoline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPMainThreadTrampoline.swift; sourceTree = "<group>"; };
+		75A7F35B21FFD0F600248D07 /* SPFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPFunctions.swift; sourceTree = "<group>"; };
+		75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPConnectionControllerDelegateProtocol.swift; sourceTree = "<group>"; };
+		75A7F4CD220068E700248D07 /* SPKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPKeychain.swift; sourceTree = "<group>"; };
 		9983E42F37F9F4DE385FF351 /* Pods-ZFSManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFSManager.release.xcconfig"; path = "Target Support Files/Pods-ZFSManager/Pods-ZFSManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -371,14 +380,18 @@
 				7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */,
 				75A63C2D21F8E19600248D07 /* Connection.swift */,
 				75A63C2F21F8E49700248D07 /* ConnectionController.swift */,
+				75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */,
 				75A63D4321F939D300248D07 /* SPFavoritesController.swift */,
 				5AF0D42AEDD569D540C1D969 /* ZFSSplitView.swift */,
 				75A63D4921F93D5900248D07 /* SPConstants.swift */,
 				75A63D5021F9E3C200248D07 /* SPStringAdditions.swift */,
 				75A63D4B21F9E2B100248D07 /* SPStringAdditionsTests.swift */,
+				75A7F35921FFC9CA00248D07 /* SPMainThreadTrampoline.swift */,
+				75A7F35B21FFD0F600248D07 /* SPFunctions.swift */,
+				75A7F4D0220068FF00248D07 /* Other */,
 				75A63D4121F917E700248D07 /* Model */,
+				75A7F35821FFC91400248D07 /* Views */,
 				75A63D3E21F8FB0A00248D07 /* Debugging & Support */,
-				75A63D3B21F8FA6700248D07 /* Outline Views */,
 				75A63D4D21F9E39000248D07 /* ZFSManager-Bridging-Header.h */,
 			);
 			path = ZFSManager;
@@ -563,6 +576,31 @@
 				75A7F35121FB774A00248D07 /* SPNamedNode.swift */,
 			);
 			path = "Tree Nodes";
+			sourceTree = "<group>";
+		};
+		75A7F35821FFC91400248D07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				75A63D3B21F8FA6700248D07 /* Outline Views */,
+				75A7F35621FFC90A00248D07 /* SPAlertSheets.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		75A7F4CF220068F200248D07 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				75A7F4CD220068E700248D07 /* SPKeychain.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		75A7F4D0220068FF00248D07 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				75A7F4CF220068F200248D07 /* Keychain */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		76BC921642E8C43A4BC60D55 /* Pods */ = {
@@ -834,11 +872,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A7F35E22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift in Sources */,
 				75A7F35021FB767300248D07 /* SPFavoriteNode.swift in Sources */,
+				75A7F4CE220068E800248D07 /* SPKeychain.swift in Sources */,
 				75A63C3021F8E49700248D07 /* ConnectionController.swift in Sources */,
 				7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */,
+				75A7F35721FFC90A00248D07 /* SPAlertSheets.swift in Sources */,
 				75A63D4621F93A8F00248D07 /* SPSingleton.swift in Sources */,
 				75A63C2E21F8E19600248D07 /* Connection.swift in Sources */,
+				75A7F35A21FFC9CA00248D07 /* SPMainThreadTrampoline.swift in Sources */,
 				75A63D3D21F8FB0300248D07 /* OSInfo.swift in Sources */,
 				75A63D4021F917DF00248D07 /* SPTreeNode.swift in Sources */,
 				75A63D4421F939D300248D07 /* SPFavoritesController.swift in Sources */,
