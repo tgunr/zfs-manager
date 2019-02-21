@@ -22,7 +22,7 @@ class ZFSConnectionController: NSViewController, NSTableViewDelegate {
     weak var delegate: (SPConnectionControllerDelegateProtocol & NSObject)?
 
     @IBOutlet var connectionView: NSView!
-    @IBOutlet weak var connectionSplitView: ZFSSplitView!
+    @IBOutlet weak var connectionSplitView: SPSplitView!
     @IBOutlet var connectionDetailsScrollView: NSScrollView!
     @IBOutlet var connectionInstructionsTextField: NSTextField!
     @IBOutlet var favoritesOutlineView: ZFSFavoritesOutlineView!

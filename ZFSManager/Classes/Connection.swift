@@ -9,7 +9,7 @@
 import Foundation
 
 enum ConnectionType {
-    case ssh, sftp
+    case local, ssh, sftp
 }
 
 class Connection {

@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		122F608DD69A3580C626EE35 /* Pods_ZFSManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6B262E36204405065FDCF8 /* Pods_ZFSManager.framework */; };
-		5AF0DA2D2180528777E3CBF2 /* ZFSSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0D42AEDD569D540C1D969 /* ZFSSplitView.swift */; };
+		5AF0DA2D2180528777E3CBF2 /* SPSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */; };
+		750216C4221F466A00248D07 /* ConnectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C3221F466A00248D07 /* ConnectionsController.swift */; };
+		750216C9221F4D4B00248D07 /* ZFSMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */; };
+		750216D0221F4E4700248D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216CD221F4E4700248D07 /* Main.storyboard */; };
 		7547CD8321F8B5C300248D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8221F8B5C300248D07 /* AppDelegate.swift */; };
 		7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8421F8B5C300248D07 /* ViewController.swift */; };
 		7547CD8721F8B5C400248D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7547CD8621F8B5C400248D07 /* Assets.xcassets */; };
-		7547CD8A21F8B5C400248D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7547CD8821F8B5C400248D07 /* Main.storyboard */; };
 		75A63C2E21F8E19600248D07 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A63C2D21F8E19600248D07 /* Connection.swift */; };
 		75A63C3021F8E49700248D07 /* ZFSConnectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A63C2F21F8E49700248D07 /* ZFSConnectionController.swift */; };
 		75A63CB421F8E95600248D07 /* link-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A63C3221F8E95500248D07 /* link-arrow@2x.png */; };
@@ -177,12 +179,14 @@
 /* Begin PBXFileReference section */
 		1CA330B741D50CFD5CBFBDBB /* Pods-ZFSManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFSManager.debug.xcconfig"; path = "Target Support Files/Pods-ZFSManager/Pods-ZFSManager.debug.xcconfig"; sourceTree = "<group>"; };
 		5A6B262E36204405065FDCF8 /* Pods_ZFSManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZFSManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5AF0D42AEDD569D540C1D969 /* ZFSSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSSplitView.swift; sourceTree = "<group>"; };
+		5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSplitView.swift; sourceTree = "<group>"; };
+		750216C3221F466A00248D07 /* ConnectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsController.swift; sourceTree = "<group>"; };
+		750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainWindowController.swift; sourceTree = "<group>"; };
+		750216CE221F4E4700248D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7547CD7F21F8B5C300248D07 /* ZFSManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZFSManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7547CD8221F8B5C300248D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7547CD8421F8B5C300248D07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7547CD8621F8B5C400248D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7547CD8921F8B5C400248D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7547CD8621F8B5C400248D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		7547CD8B21F8B5C400248D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZFSManager.entitlements; sourceTree = "<group>"; };
 		75A63C2D21F8E19600248D07 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
@@ -350,13 +354,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		750216C7221F4D4B00248D07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7547CD8421F8B5C300248D07 /* ViewController.swift */,
+				750216C3221F466A00248D07 /* ConnectionsController.swift */,
+				75A63C2F21F8E49700248D07 /* ZFSConnectionController.swift */,
+				75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */,
+				75A63D4321F939D300248D07 /* SPFavoritesController.swift */,
+				750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		750216CA221F4DCA00248D07 /* SPClasses */ = {
+			isa = PBXGroup;
+			children = (
+				5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */,
+				75A63D4921F93D5900248D07 /* SPConstants.swift */,
+				75A63D5021F9E3C200248D07 /* SPStringAdditions.swift */,
+				75A63D4B21F9E2B100248D07 /* SPStringAdditionsTests.swift */,
+				75A7F35921FFC9CA00248D07 /* SPMainThreadTrampoline.swift */,
+				75A7F35B21FFD0F600248D07 /* SPFunctions.swift */,
+			);
+			path = SPClasses;
+			sourceTree = "<group>";
+		};
+		750216CC221F4E4700248D07 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				750216CD221F4E4700248D07 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		750216D2221F4F1F00248D07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				75A63C2D21F8E19600248D07 /* Connection.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		7547CD7621F8B5C300248D07 = {
 			isa = PBXGroup;
 			children = (
 				7547CD8121F8B5C300248D07 /* ZFSManager */,
 				7547CD8021F8B5C300248D07 /* Products */,
 				76BC921642E8C43A4BC60D55 /* Pods */,
-				75A63D3621F8E96100248D07 /* Resources */,
 				E1C80560B3372C8BEEFF3328 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -373,25 +418,15 @@
 			isa = PBXGroup;
 			children = (
 				7547CD8221F8B5C300248D07 /* AppDelegate.swift */,
-				7547CD8421F8B5C300248D07 /* ViewController.swift */,
-				7547CD8621F8B5C400248D07 /* Assets.xcassets */,
-				7547CD8821F8B5C400248D07 /* Main.storyboard */,
-				7547CD8B21F8B5C400248D07 /* Info.plist */,
-				7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */,
-				75A63C2D21F8E19600248D07 /* Connection.swift */,
-				75A63C2F21F8E49700248D07 /* ZFSConnectionController.swift */,
-				75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */,
-				75A63D4321F939D300248D07 /* SPFavoritesController.swift */,
-				5AF0D42AEDD569D540C1D969 /* ZFSSplitView.swift */,
-				75A63D4921F93D5900248D07 /* SPConstants.swift */,
-				75A63D5021F9E3C200248D07 /* SPStringAdditions.swift */,
-				75A63D4B21F9E2B100248D07 /* SPStringAdditionsTests.swift */,
-				75A7F35921FFC9CA00248D07 /* SPMainThreadTrampoline.swift */,
-				75A7F35B21FFD0F600248D07 /* SPFunctions.swift */,
+				750216D2221F4F1F00248D07 /* Classes */,
+				750216CA221F4DCA00248D07 /* SPClasses */,
 				75A7F4D0220068FF00248D07 /* Other */,
 				75A63D4121F917E700248D07 /* Model */,
 				75A7F35821FFC91400248D07 /* Views */,
+				750216C7221F4D4B00248D07 /* Controllers */,
+				750216CC221F4E4700248D07 /* Storyboards */,
 				75A63D3E21F8FB0A00248D07 /* Debugging & Support */,
+				75A63D3621F8E96100248D07 /* Resources */,
 				75A63D4D21F9E39000248D07 /* ZFSManager-Bridging-Header.h */,
 			);
 			path = ZFSManager;
@@ -537,6 +572,9 @@
 		75A63D3621F8E96100248D07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7547CD8621F8B5C400248D07 /* Assets.xcassets */,
+				7547CD8B21F8B5C400248D07 /* Info.plist */,
+				7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */,
 				75A63C3121F8E95500248D07 /* Images */,
 			);
 			path = Resources;
@@ -795,6 +833,7 @@
 				75A63D1B21F8E95600248D07 /* database-small.png in Resources */,
 				75A63D2221F8E95600248D07 /* toolbar-switch-to-browse@2x.png in Resources */,
 				75A63CCE21F8E95600248D07 /* button_select_none@2x.png in Resources */,
+				750216D0221F4E4700248D07 /* Main.storyboard in Resources */,
 				7547CD8721F8B5C400248D07 /* Assets.xcassets in Resources */,
 				75A63D0A21F8E95600248D07 /* toolbar-switch-to-table-info@2x.png in Resources */,
 				75A63CF621F8E95600248D07 /* button_action.png in Resources */,
@@ -812,7 +851,6 @@
 				75A63CDD21F8E95600248D07 /* dummy-small.png in Resources */,
 				75A63CDA21F8E95600248D07 /* sync_arrows_04.png in Resources */,
 				75A63CD621F8E95600248D07 /* button_clear.png in Resources */,
-				7547CD8A21F8B5C400248D07 /* Main.storyboard in Resources */,
 				75A63D0E21F8E95600248D07 /* clearconsole.png in Resources */,
 				75A63D0F21F8E95600248D07 /* button_edit.png in Resources */,
 			);
@@ -878,10 +916,12 @@
 				75A63C3021F8E49700248D07 /* ZFSConnectionController.swift in Sources */,
 				7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */,
 				75A7F35721FFC90A00248D07 /* SPAlertSheets.swift in Sources */,
+				750216C9221F4D4B00248D07 /* ZFSMainWindowController.swift in Sources */,
 				75A63D4621F93A8F00248D07 /* SPSingleton.swift in Sources */,
 				75A63C2E21F8E19600248D07 /* Connection.swift in Sources */,
 				75A7F35A21FFC9CA00248D07 /* SPMainThreadTrampoline.swift in Sources */,
 				75A63D3D21F8FB0300248D07 /* OSInfo.swift in Sources */,
+				750216C4221F466A00248D07 /* ConnectionsController.swift in Sources */,
 				75A63D4021F917DF00248D07 /* SPTreeNode.swift in Sources */,
 				75A63D4421F939D300248D07 /* SPFavoritesController.swift in Sources */,
 				7547CD8321F8B5C300248D07 /* AppDelegate.swift in Sources */,
@@ -889,7 +929,7 @@
 				75A7F35221FB774A00248D07 /* SPNamedNode.swift in Sources */,
 				75A63D4821F93CF200248D07 /* SPGroupNode.swift in Sources */,
 				75A63D3A21F8FA5400248D07 /* ZFSFavoritesOutlineView.swift in Sources */,
-				5AF0DA2D2180528777E3CBF2 /* ZFSSplitView.swift in Sources */,
+				5AF0DA2D2180528777E3CBF2 /* SPSplitView.swift in Sources */,
 				75A63D5121F9E3C200248D07 /* SPStringAdditions.swift in Sources */,
 				75A63D4C21F9E2B100248D07 /* SPStringAdditionsTests.swift in Sources */,
 			);
@@ -898,10 +938,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7547CD8821F8B5C400248D07 /* Main.storyboard */ = {
+		750216CD221F4E4700248D07 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7547CD8921F8B5C400248D07 /* Base */,
+				750216CE221F4E4700248D07 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1030,18 +1070,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ZFSManager/ZFSManager.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ZFSManager/Resources/ZFSManager.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NL3267E99V;
-				INFOPLIST_FILE = ZFSManager/Info.plist;
+				INFOPLIST_FILE = ZFSManager/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = polymicro.ZFSManager;
+				PRODUCT_BUNDLE_IDENTIFIER = net.polymicro.ZFSManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZFSManager/ZFSManager-Bridging-Header.h";
@@ -1057,18 +1097,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ZFSManager/ZFSManager.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ZFSManager/Resources/ZFSManager.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NL3267E99V;
-				INFOPLIST_FILE = ZFSManager/Info.plist;
+				INFOPLIST_FILE = ZFSManager/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = polymicro.ZFSManager;
+				PRODUCT_BUNDLE_IDENTIFIER = net.polymicro.ZFSManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZFSManager/ZFSManager-Bridging-Header.h";

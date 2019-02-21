@@ -5,7 +5,7 @@
 
 import Cocoa
 
-class ZFSSplitView: NSSplitView, NSSplitViewDelegate {
+class SPSplitView: NSSplitView, NSSplitViewDelegate {
 //    weak var delegate: NSSplitViewDelegate?
     @IBOutlet var collapseToggleButton: NSButton!
     @IBOutlet var additionalDragHandleView: NSView!
@@ -23,9 +23,9 @@ class ZFSSplitView: NSSplitView, NSSplitViewDelegate {
 
 
 class SPSplitViewAnimationRetainCycleBypass: NSObject {
-    var parentSplitView: ZFSSplitView?
+    var parentSplitView: SPSplitView?
 
-    init(parent aSplitView: ZFSSplitView?) {
+    init(parent aSplitView: SPSplitView?) {
     }
 
     func _animationStep(_ aTimer: Timer?) {
