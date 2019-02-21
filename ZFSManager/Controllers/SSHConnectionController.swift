@@ -11,7 +11,7 @@ import Cocoa
 class ZFSFlippedView: NSView {
 }
 
-class ZFSConnectionController: NSViewController, NSTableViewDelegate {
+class SSHConnectionController: NSViewController, NSTableViewDelegate {
     var hostTable: NSTableView?
     
     var keychain: SPKeychain?
@@ -167,7 +167,7 @@ class ZFSConnectionController: NSViewController, NSTableViewDelegate {
                 /* Modal delegate */
                 modalDelegate: self,
                 /* Did end selector */
-                didEndSelector: #selector(ZFSConnectionController.localhostErrorSheetDidEnd(_:returnCode:contextInfo:)),
+                didEndSelector: #selector(SSHConnectionController.localhostErrorSheetDidEnd(_:returnCode:contextInfo:)),
                 /* Contextual info for selectors */
                 contextInfo: nil,
                 msg: NSLocalizedString(

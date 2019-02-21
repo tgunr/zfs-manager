@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.64"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -225,9 +225,6 @@
 DQ
 </string>
                                                                             </buttonCell>
-                                                                            <connections>
-                                                                                <action selector="initiateConnection:" target="XfG-lQ-9wD" id="HhP-UW-dij"/>
-                                                                            </connections>
                                                                         </button>
                                                                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8X-TU-O6h" userLabel="Edit Connection Buttons Box">
                                                                             <rect key="frame" x="0.0" y="0.0" width="447" height="37"/>
@@ -240,9 +237,6 @@ DQ
                                                                                     <buttonCell key="cell" type="push" title="Test connection" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DFF-lW-7av">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" metaFont="smallSystem"/>
-                                                                                        <connections>
-                                                                                            <action selector="initiateConnection:" target="XfG-lQ-9wD" id="hm2-pW-Ey5"/>
-                                                                                        </connections>
                                                                                     </buttonCell>
                                                                                 </button>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gdy-44-9yk">
@@ -1372,15 +1366,6 @@ DQ
                             <constraint firstItem="F1V-H5-USW" firstAttribute="leading" secondItem="LhO-Iw-jCY" secondAttribute="leading" id="uod-gr-Cca"/>
                         </constraints>
                     </customView>
-                    <connections>
-                        <outlet property="connectionSplitView" destination="F1V-H5-USW" id="zW0-1H-ysl"/>
-                        <outlet property="connectionView" destination="LhO-Iw-jCY" id="Fqn-et-8OD"/>
-                        <outlet property="sshKeyFile" destination="QUS-CF-oLc" id="ljR-52-Yoz"/>
-                        <outlet property="sshNameField" destination="c4r-O3-b25" id="zSD-cw-1NV"/>
-                        <outlet property="sshPasswordField" destination="gaw-km-Pag" id="Or0-2P-GNX"/>
-                        <outlet property="sshSSHKeyButton" destination="bhY-Ge-2ng" id="9hV-5V-Mq5"/>
-                        <outlet property="standardNameField" destination="CdC-sw-ogR" id="MuP-Y0-GTl"/>
-                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="cvc-FU-b0S" userLabel="Context Menu">
@@ -1406,7 +1391,7 @@ DQ
                 </menu>
                 <userDefaultsController representsSharedInstance="YES" id="HrI-yn-upL"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1020"/>
+            <point key="canvasLocation" x="-211" y="849"/>
         </scene>
     </scenes>
     <resources>

@@ -42,11 +42,11 @@ protocol SPConnectionControllerDelegateProtocol: NSObjectProtocol {
      *
      * @param controller The calling connection controller.
      */
-    func connectionControllerInitiatingConnection(_ controller: ZFSConnectionController?)
+    func connectionControllerInitiatingConnection(_ controller: SSHConnectionController?)
     /**
      * Called when the connection controller's connection attempt failed.
      *
      * @param controller The calling connection controller.
      */
-    func connectionControllerConnectAttemptFailed(_ controller: ZFSConnectionController?)
+    func connectionControllerConnectAttemptFailed(_ controller: SSHConnectionController?)
 }
