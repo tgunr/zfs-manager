@@ -93,7 +93,7 @@ class SPKeychain: NSObject {
                 let trustedApps = [sequelProRef, sequelProHelperRef]
 
                 let searchName = name ?? ""
-                let accountName = account ?? ""
+//                let accountName = account ?? ""
                 status = SecAccessCreate(searchName as CFString, trustedApps as CFArray, &passwordAccessRef)
 
                 if status != errSecSuccess {
@@ -104,10 +104,10 @@ class SPKeychain: NSObject {
 
             // Set up the item attributes
             var dataString = "application password"
-            var dataStringP = UnsafeMutableRawPointer(&dataString)
+            let dataStringP = UnsafeMutableRawPointer(&dataString)
             var attrString: ContiguousArray<CChar>?
             var attrStringP = UnsafeMutableRawPointer(&attrString)
-            var attrStringS = attrString?.count ?? 0
+            let attrStringS = attrString?.count ?? 0
 
             attributes[0].tag = SecItemAttr.genericItemAttr.rawValue
             attributes[0].data = dataStringP
@@ -132,12 +132,12 @@ class SPKeychain: NSObject {
             attributes[2].length = UInt32(truncating: attrStringS as NSNumber)
 
             attList.count = 4
-            var attributesP = UnsafeMutablePointer(&attributes)
+            let attributesP = UnsafeMutablePointer(&attributes)
             attList.attr = attributesP
 
             // Create the keychain item
             var newPassword = password
-            var newPasswordS = newPassword?.count ?? 0
+            let newPasswordS = newPassword?.count ?? 0
 //            password?.withCString({ cstrptr in
 //                let newPasswordP = UnsafeRawPointer(cstrptr)
 //                status = SecKeychainItemCreateFromContent(
@@ -177,17 +177,17 @@ class SPKeychain: NSObject {
     func getPasswordForName(_ name: String?, account: String?) -> String? {
         var status: OSStatus
 
-        var passwordData: Void?
+//        let passwordData: Void?
         var passwordLength: UInt32 = 0
         var itemRef: SecKeychainItem?
-        var password: String? = nil
+//        let password: String? = nil
         let searchName = name ?? ""
         let accountName = account ?? ""
         var searchNameLength: UInt32 = UInt32(searchName.count)
         //            var keyVal: UnsafeMutableRawPointer? = nil
 
         let found = findGenericPassword(forName: searchName, account: accountName)
-        let keyItem = found.result! as AnyObject as? UnsafeMutablePointer<SecKeychainItem?>
+//        let keyItem = found.result! as AnyObject as? UnsafeMutablePointer<SecKeychainItem?>
 
         status = SecKeychainFindGenericPassword(
             nil,
@@ -200,7 +200,7 @@ class SPKeychain: NSObject {
             found.result! as AnyObject as? UnsafeMutablePointer<UnsafeMutableRawPointer?>,
             nil
         )
-        var item = found.result! as AnyObject as? UnsafeMutableRawPointer
+//        var item = found.result! as AnyObject as? UnsafeMutableRawPointer
         var password1: UnsafeMutableRawPointer? = nil
         var passwordString: String? = nil
         status = SecKeychainFindGenericPassword(
@@ -317,9 +317,9 @@ class SPKeychain: NSObject {
     
     func passwordExists(forName name: String?, account: String?) -> Bool {
         let search = passwordSearch(forName: name, account: account)
+        fatalError("Keychain unsupported for MacOS < 10.7")
         return search.success == errSecSuccess
         
-        fatalError("Keychain unsupported for MacOS < 10.7")
 
         /*
         //Version for 10.6
@@ -437,12 +437,12 @@ class SPKeychain: NSObject {
         attributes[0].length = UInt32(truncating: attrStringS as NSNumber)
 
         attList.count = 2
-        var attributesP = UnsafeMutablePointer(&attributes)
+        let attributesP = UnsafeMutablePointer(&attributes)
         attList.attr = attributesP
 
         // Amend the keychain item
         var newPassword = password
-        var newPasswordS = newPassword?.count ?? 0
+        let newPasswordS = newPassword?.count ?? 0
         
         withUnsafePointer(to: &newPassword) { ptr in
             let newPasswordP = UnsafeRawPointer(ptr)
