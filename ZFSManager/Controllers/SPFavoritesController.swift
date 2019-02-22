@@ -145,7 +145,7 @@ class SPFavoritesController: SPSingleton {
                     print("Error converting default favorites data to plist format: \(error)")
                 }
             } else {
-                try? plistData?.write(toFile: favoritesFile, options: .atomicWrite)
+                ((try? plistData?.write(toFile: favoritesFile, options: .atomicWrite)) as ()??)
                 if error != nil {
                     if let error = error {
                         print("Error writing default favorites data: \(error)")
@@ -254,7 +254,7 @@ class SPFavoritesController: SPSingleton {
             }
 
             // Write the converted data to the favourites file
-            try? plistData?.write(to: favoritesFileURL)
+            ((try? plistData?.write(to: favoritesFileURL)) as ()??)
             if error != nil {
                 print("Error writing favorites data. Restoring backup if available: \(error?.localizedDescription ?? "")")
 

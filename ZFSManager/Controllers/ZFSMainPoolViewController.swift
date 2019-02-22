@@ -5,9 +5,10 @@
 
 import Cocoa
 
-class ZFSMainPoolViewController: ZFSMainTabViewController {
+class ZFSMainPoolViewController: ZFSMainTabViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
     @IBOutlet weak var poolsTable: NSOutlineView!
-    var pools: [String]?
+    var pools: [Pool]?
+    var poolNames: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,13 @@ class ZFSMainPoolViewController: ZFSMainTabViewController {
     func getPools() {
         let result = shell(cmd: "/usr/local/bin/zpool", args: ["list", "-H"])
         if (result.exitCode == 0) {
-            pools = result.output
+            pools = []
+            poolNames = []
+            for poolString in result.output {
+                let newPool = Pool().stringToPool(poolString: poolString)
+                pools?.append(newPool)
+                poolNames?.append(newPool.name)
+            }
         }
     }
     
@@ -29,16 +36,16 @@ class ZFSMainPoolViewController: ZFSMainTabViewController {
     }
 }
 
-extension ZFSMainPoolViewController: NSOutlineViewDataSource {
+extension ZFSMainPoolViewController {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if pools == nil {
             getPools()
         }
-        return pools?.count ?? 0
+        return poolNames?.count ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return pools?[index] as Any
+        return poolNames?[index] as Any
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
@@ -55,12 +62,13 @@ extension ZFSMainPoolViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn:  NSTableColumn?,
      byItem item: Any?) -> Any? {
-        return nil
+//        let poolItem = item as! Pool
+        return item
      }
 
 }
 
-extension ZFSMainPoolViewController: NSOutlineViewDelegate {
+extension ZFSMainPoolViewController {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         var view: NSTableCellView?
 
