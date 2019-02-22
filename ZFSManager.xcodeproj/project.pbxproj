@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		122F608DD69A3580C626EE35 /* Pods_ZFSManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6B262E36204405065FDCF8 /* Pods_ZFSManager.framework */; };
+		5AF0D62F291040897EA3ACC1 /* ZFSMainPoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0DC221573A0311038DC80 /* ZFSMainPoolViewController.swift */; };
 		5AF0DA2D2180528777E3CBF2 /* SPSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */; };
 		750216C4221F466A00248D07 /* ConnectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C3221F466A00248D07 /* ConnectionsController.swift */; };
 		750216C9221F4D4B00248D07 /* ZFSMainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */; };
@@ -195,6 +196,7 @@
 		1CA330B741D50CFD5CBFBDBB /* Pods-ZFSManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFSManager.debug.xcconfig"; path = "Target Support Files/Pods-ZFSManager/Pods-ZFSManager.debug.xcconfig"; sourceTree = "<group>"; };
 		5A6B262E36204405065FDCF8 /* Pods_ZFSManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZFSManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSplitView.swift; sourceTree = "<group>"; };
+		5AF0DC221573A0311038DC80 /* ZFSMainPoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainPoolViewController.swift; sourceTree = "<group>"; };
 		750216C3221F466A00248D07 /* ConnectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsController.swift; sourceTree = "<group>"; };
 		750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainWindowController.swift; sourceTree = "<group>"; };
 		750216D3221F507800248D07 /* ZFSMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZFSMain.storyboard; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				75A7F35D22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift */,
 				75A63D4321F939D300248D07 /* SPFavoritesController.swift */,
 				750216C8221F4D4B00248D07 /* ZFSMainWindowController.swift */,
+				5AF0DC221573A0311038DC80 /* ZFSMainPoolViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1468,6 +1471,7 @@
 				5AF0DA2D2180528777E3CBF2 /* SPSplitView.swift in Sources */,
 				75A63D5121F9E3C200248D07 /* SPStringAdditions.swift in Sources */,
 				75A63D4C21F9E2B100248D07 /* SPStringAdditionsTests.swift in Sources */,
+				5AF0D62F291040897EA3ACC1 /* ZFSMainPoolViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

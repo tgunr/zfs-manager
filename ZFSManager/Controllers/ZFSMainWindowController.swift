@@ -51,19 +51,6 @@ class ZFSMainTabViewController: NSViewController, NSTableViewDelegate, NSTableVi
     }
 }
 
-class ZFSMainPoolViewController: ZFSMainTabViewController {
-    @IBOutlet weak var poolsTable: NSOutlineView!
-    var pools: [String]?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let result = shell(cmd: "/usr/local/bin/zpool", args: ["list", "-H"])
-        if (result.exitCode == 0) {
-            pools = result.output
-        }
-    }
-}
 
 class ZFSMainVolumesViewController: ZFSMainTabViewController {
 

@@ -17,4 +17,6 @@ class ConnectionsController: NSViewController, NSTableViewDelegate {
         let selectedConnection = Connection()
         appDelegate.connection = selectedConnection
     }
+
+
 }

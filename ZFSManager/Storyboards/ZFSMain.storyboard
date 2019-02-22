@@ -131,8 +131,9 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <outlet property="dataSource" destination="UWv-Fp-8pA" id="C03-6Q-GT4"/>
-                                                <outlet property="delegate" destination="UWv-Fp-8pA" id="fm7-K3-aGv"/>
+                                                <action selector="poolsAction:" target="UWv-Fp-8pA" id="dFb-gY-lCB"/>
+                                                <outlet property="dataSource" destination="UWv-Fp-8pA" id="rVZ-Fj-Nxz"/>
+                                                <outlet property="delegate" destination="UWv-Fp-8pA" id="pOt-Lf-hKa"/>
                                             </connections>
                                         </outlineView>
                                     </subviews>
