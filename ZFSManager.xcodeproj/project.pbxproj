@@ -14,6 +14,10 @@
 		750216D0221F4E4700248D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216CD221F4E4700248D07 /* Main.storyboard */; };
 		750216D5221F507800248D07 /* ZFSMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216D3221F507800248D07 /* ZFSMain.storyboard */; };
 		750216D6221F507800248D07 /* SSHConnection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216D4221F507800248D07 /* SSHConnection.storyboard */; };
+		75021700221F67EB00248D07 /* zfs_iter.c in Sources */ = {isa = PBXBuildFile; fileRef = 750216EC221F673D00248D07 /* zfs_iter.c */; };
+		75021701221F67EB00248D07 /* zfs_osx.m in Sources */ = {isa = PBXBuildFile; fileRef = 750216EF221F673D00248D07 /* zfs_osx.m */; };
+		75021702221F67EB00248D07 /* zfs_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 750216F3221F673D00248D07 /* zfs_main.c */; };
+		750217C2221F6C4000248D07 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750217C1221F6C4000248D07 /* Task.swift */; };
 		7547CD8321F8B5C300248D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8221F8B5C300248D07 /* AppDelegate.swift */; };
 		7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8421F8B5C300248D07 /* ViewController.swift */; };
 		7547CD8721F8B5C400248D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7547CD8621F8B5C400248D07 /* Assets.xcassets */; };
@@ -167,6 +171,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		750216F7221F67CB00248D07 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		75A63D5421F9E8DA00248D07 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -187,6 +200,197 @@
 		750216CE221F4E4700248D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		750216D3221F507800248D07 /* ZFSMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZFSMain.storyboard; sourceTree = "<group>"; };
 		750216D4221F507800248D07 /* SSHConnection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SSHConnection.storyboard; sourceTree = "<group>"; };
+		750216EC221F673D00248D07 /* zfs_iter.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = zfs_iter.c; sourceTree = "<group>"; };
+		750216ED221F673D00248D07 /* zfs_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zfs_util.h; sourceTree = "<group>"; };
+		750216EF221F673D00248D07 /* zfs_osx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zfs_osx.m; sourceTree = "<group>"; };
+		750216F0221F673D00248D07 /* zfs_iter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zfs_iter.h; sourceTree = "<group>"; };
+		750216F1221F673D00248D07 /* zfs_osx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zfs_osx.h; sourceTree = "<group>"; };
+		750216F2221F673D00248D07 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		750216F3221F673D00248D07 /* zfs_main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = zfs_main.c; sourceTree = "<group>"; };
+		750216F9221F67CB00248D07 /* zfs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = zfs; sourceTree = BUILT_PRODUCTS_DIR; };
+		750216FB221F67CB00248D07 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		75021704221F6B1800248D07 /* zfeature_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfeature_common.h; sourceTree = "<group>"; };
+		75021705221F6B1800248D07 /* zfs_namecheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_namecheck.h; sourceTree = "<group>"; };
+		75021706221F6B1800248D07 /* zfs_fletcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_fletcher.h; sourceTree = "<group>"; };
+		75021707221F6B1800248D07 /* zpios-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "zpios-internal.h"; sourceTree = "<group>"; };
+		75021708221F6B1800248D07 /* libuutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libuutil.h; sourceTree = "<group>"; };
+		75021709221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		7502170A221F6B1800248D07 /* libuutil_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libuutil_common.h; sourceTree = "<group>"; };
+		7502170B221F6B1800248D07 /* libuutil_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libuutil_impl.h; sourceTree = "<group>"; };
+		7502170C221F6B1800248D07 /* zfs_comutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_comutil.h; sourceTree = "<group>"; };
+		7502170D221F6B1800248D07 /* libnvpair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libnvpair.h; sourceTree = "<group>"; };
+		7502170E221F6B1800248D07 /* zfs_deleg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_deleg.h; sourceTree = "<group>"; };
+		7502170F221F6B1800248D07 /* libzfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libzfs.h; sourceTree = "<group>"; };
+		75021710221F6B1800248D07 /* zpios-ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "zpios-ctl.h"; sourceTree = "<group>"; };
+		75021711221F6B1800248D07 /* libzfs_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libzfs_core.h; sourceTree = "<group>"; };
+		75021712221F6B1800248D07 /* libdiskmgt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libdiskmgt.h; sourceTree = "<group>"; };
+		75021713221F6B1800248D07 /* zfs_prop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_prop.h; sourceTree = "<group>"; };
+		75021714221F6B1800248D07 /* libzfs_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libzfs_impl.h; sourceTree = "<group>"; };
+		75021716221F6B1800248D07 /* hfs_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hfs_internal.h; sourceTree = "<group>"; };
+		75021717221F6B1800248D07 /* unique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unique.h; sourceTree = "<group>"; };
+		75021718221F6B1800248D07 /* dnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dnode.h; sourceTree = "<group>"; };
+		75021719221F6B1800248D07 /* trace_dnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_dnode.h; sourceTree = "<group>"; };
+		7502171A221F6B1800248D07 /* avl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = avl.h; sourceTree = "<group>"; };
+		7502171B221F6B1800248D07 /* vdev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev.h; sourceTree = "<group>"; };
+		7502171C221F6B1800248D07 /* kstat_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kstat_osx.h; sourceTree = "<group>"; };
+		7502171D221F6B1800248D07 /* uberblock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uberblock.h; sourceTree = "<group>"; };
+		7502171E221F6B1800248D07 /* spa_checksum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_checksum.h; sourceTree = "<group>"; };
+		7502171F221F6B1800248D07 /* vdev_disk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_disk.h; sourceTree = "<group>"; };
+		75021720221F6B1800248D07 /* sa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sa.h; sourceTree = "<group>"; };
+		75021721221F6B1800248D07 /* dsl_deadlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_deadlist.h; sourceTree = "<group>"; };
+		75021722221F6B1800248D07 /* dsl_bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_bookmark.h; sourceTree = "<group>"; };
+		75021723221F6B1800248D07 /* ZFSDataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSDataset.h; sourceTree = "<group>"; };
+		75021724221F6B1800248D07 /* gfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gfs.h; sourceTree = "<group>"; };
+		75021725221F6B1800248D07 /* mntent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mntent.h; sourceTree = "<group>"; };
+		75021726221F6B1800248D07 /* range_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = range_tree.h; sourceTree = "<group>"; };
+		75021727221F6B1800248D07 /* ZFSDatasetScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSDatasetScheme.h; sourceTree = "<group>"; };
+		75021728221F6B1800248D07 /* finderinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finderinfo.h; sourceTree = "<group>"; };
+		75021729221F6B1800248D07 /* ZFSDatasetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSDatasetProxy.h; sourceTree = "<group>"; };
+		7502172A221F6B1800248D07 /* zfs_fuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_fuid.h; sourceTree = "<group>"; };
+		7502172B221F6B1800248D07 /* dsl_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_pool.h; sourceTree = "<group>"; };
+		7502172C221F6B1800248D07 /* vdev_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_impl.h; sourceTree = "<group>"; };
+		7502172D221F6B1800248D07 /* zfs_ctldir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_ctldir.h; sourceTree = "<group>"; };
+		7502172F221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		75021730221F6B1800248D07 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
+		75021731221F6B1800248D07 /* lauxlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lauxlib.h; sourceTree = "<group>"; };
+		75021732221F6B1800248D07 /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
+		75021733221F6B1800248D07 /* lualib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lualib.h; sourceTree = "<group>"; };
+		75021734221F6B1800248D07 /* dsl_crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_crypt.h; sourceTree = "<group>"; };
+		75021735221F6B1800248D07 /* zfs_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_context.h; sourceTree = "<group>"; };
+		75021736221F6B1800248D07 /* trace_acl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_acl.h; sourceTree = "<group>"; };
+		75021737221F6B1800248D07 /* dsl_prop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_prop.h; sourceTree = "<group>"; };
+		75021738221F6B1800248D07 /* zfs_context_userland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_context_userland.h; sourceTree = "<group>"; };
+		75021739221F6B1800248D07 /* sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha2.h; sourceTree = "<group>"; };
+		7502173A221F6B1800248D07 /* zfs_vfsops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_vfsops.h; sourceTree = "<group>"; };
+		7502173B221F6B1800248D07 /* dmu_traverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu_traverse.h; sourceTree = "<group>"; };
+		7502173C221F6B1800248D07 /* zvol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zvol.h; sourceTree = "<group>"; };
+		7502173D221F6B1800248D07 /* zfs_acl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_acl.h; sourceTree = "<group>"; };
+		7502173E221F6B1800248D07 /* dmu_send.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu_send.h; sourceTree = "<group>"; };
+		7502173F221F6B1800248D07 /* hkdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hkdf.h; sourceTree = "<group>"; };
+		75021740221F6B1800248D07 /* zfs_rlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_rlock.h; sourceTree = "<group>"; };
+		75021741221F6B1800248D07 /* dmu_zfetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu_zfetch.h; sourceTree = "<group>"; };
+		75021742221F6B1800248D07 /* uio_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uio_impl.h; sourceTree = "<group>"; };
+		75021743221F6B1800248D07 /* dsl_dataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_dataset.h; sourceTree = "<group>"; };
+		75021744221F6B1800248D07 /* skein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = skein.h; sourceTree = "<group>"; };
+		75021745221F6B1800248D07 /* zio_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zio_impl.h; sourceTree = "<group>"; };
+		75021746221F6B1800248D07 /* zap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zap.h; sourceTree = "<group>"; };
+		75021747221F6B1800248D07 /* ZFSPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSPool.h; sourceTree = "<group>"; };
+		75021748221F6B1800248D07 /* spa_checkpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_checkpoint.h; sourceTree = "<group>"; };
+		75021749221F6B1800248D07 /* dmu_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu_impl.h; sourceTree = "<group>"; };
+		7502174A221F6B1800248D07 /* zfs_context_kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_context_kernel.h; sourceTree = "<group>"; };
+		7502174B221F6B1800248D07 /* zfs_delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_delay.h; sourceTree = "<group>"; };
+		7502174C221F6B1800248D07 /* abd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abd.h; sourceTree = "<group>"; };
+		7502174D221F6B1800248D07 /* multilist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multilist.h; sourceTree = "<group>"; };
+		7502174E221F6B1800248D07 /* dbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbuf.h; sourceTree = "<group>"; };
+		7502174F221F6B1800248D07 /* zpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zpl.h; sourceTree = "<group>"; };
+		75021750221F6B1800248D07 /* zcp_prop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcp_prop.h; sourceTree = "<group>"; };
+		75021751221F6B1800248D07 /* zfs_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_debug.h; sourceTree = "<group>"; };
+		75021752221F6B1800248D07 /* zfs_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_dir.h; sourceTree = "<group>"; };
+		75021753221F6B1800248D07 /* dmu_objset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu_objset.h; sourceTree = "<group>"; };
+		75021754221F6B1800248D07 /* zfs_stat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_stat.h; sourceTree = "<group>"; };
+		75021755221F6B1800248D07 /* zfs_sa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_sa.h; sourceTree = "<group>"; };
+		75021756221F6B1800248D07 /* refcount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = refcount.h; sourceTree = "<group>"; };
+		75021757221F6B1800248D07 /* uuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uuid.h; sourceTree = "<group>"; };
+		75021758221F6B1800248D07 /* aggsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aggsum.h; sourceTree = "<group>"; };
+		75021759221F6B1800248D07 /* dsl_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_dir.h; sourceTree = "<group>"; };
+		7502175A221F6B1800248D07 /* vdev_initialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_initialize.h; sourceTree = "<group>"; };
+		7502175B221F6B1800248D07 /* bptree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bptree.h; sourceTree = "<group>"; };
+		7502175C221F6B1800248D07 /* zfs_onexit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_onexit.h; sourceTree = "<group>"; };
+		7502175E221F6B1800248D07 /* protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = protocol.h; sourceTree = "<group>"; };
+		75021760221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		75021761221F6B1800248D07 /* zfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs.h; sourceTree = "<group>"; };
+		75021762221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		75021763221F6B1800248D07 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		75021764221F6B1800248D07 /* edonr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edonr.h; sourceTree = "<group>"; };
+		75021765221F6B1800248D07 /* zcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcp.h; sourceTree = "<group>"; };
+		75021767221F6B1800248D07 /* zfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs.h; sourceTree = "<group>"; };
+		75021768221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		75021769221F6B1800248D07 /* trace_multilist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_multilist.h; sourceTree = "<group>"; };
+		7502176A221F6B1800248D07 /* space_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = space_map.h; sourceTree = "<group>"; };
+		7502176B221F6B1800248D07 /* mmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmp.h; sourceTree = "<group>"; };
+		7502176C221F6B1800248D07 /* zio_priority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zio_priority.h; sourceTree = "<group>"; };
+		7502176D221F6B1800248D07 /* ddt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ddt.h; sourceTree = "<group>"; };
+		7502176E221F6B1800248D07 /* ldi_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldi_buf.h; sourceTree = "<group>"; };
+		7502176F221F6B1800248D07 /* sysevent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sysevent.h; sourceTree = "<group>"; };
+		75021770221F6B1800248D07 /* nvpair_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nvpair_impl.h; sourceTree = "<group>"; };
+		75021771221F6B1800248D07 /* space_reftree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = space_reftree.h; sourceTree = "<group>"; };
+		75021772221F6B1800248D07 /* zrlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zrlock.h; sourceTree = "<group>"; };
+		75021773221F6B1800248D07 /* efi_partition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = efi_partition.h; sourceTree = "<group>"; };
+		75021774221F6B1800248D07 /* trace_zrlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_zrlock.h; sourceTree = "<group>"; };
+		75021775221F6B1800248D07 /* dsl_deleg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_deleg.h; sourceTree = "<group>"; };
+		75021776221F6B1800248D07 /* zcp_global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcp_global.h; sourceTree = "<group>"; };
+		75021777221F6B1800248D07 /* dsl_synctask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_synctask.h; sourceTree = "<group>"; };
+		75021778221F6B1800248D07 /* u8_textprep_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = u8_textprep_data.h; sourceTree = "<group>"; };
+		75021779221F6B1800248D07 /* avl_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = avl_impl.h; sourceTree = "<group>"; };
+		7502177A221F6B1800248D07 /* trace_txg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_txg.h; sourceTree = "<group>"; };
+		7502177B221F6B1800248D07 /* txg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = txg.h; sourceTree = "<group>"; };
+		7502177C221F6B1800248D07 /* metaslab_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metaslab_impl.h; sourceTree = "<group>"; };
+		7502177D221F6B1800248D07 /* dsl_userhold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_userhold.h; sourceTree = "<group>"; };
+		7502177E221F6B1800248D07 /* zfs_vnops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_vnops.h; sourceTree = "<group>"; };
+		7502177F221F6B1800248D07 /* zio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zio.h; sourceTree = "<group>"; };
+		75021780221F6B1800248D07 /* zap_leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zap_leaf.h; sourceTree = "<group>"; };
+		75021781221F6B1800248D07 /* spa_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_impl.h; sourceTree = "<group>"; };
+		75021782221F6B1800248D07 /* uberblock_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uberblock_impl.h; sourceTree = "<group>"; };
+		75021783221F6B1800248D07 /* trace_arc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_arc.h; sourceTree = "<group>"; };
+		75021784221F6B1800248D07 /* arc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arc.h; sourceTree = "<group>"; };
+		75021785221F6B1800248D07 /* zfs_mount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_mount.h; sourceTree = "<group>"; };
+		75021787221F6B1800248D07 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
+		75021788221F6B1800248D07 /* icp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = icp.h; sourceTree = "<group>"; };
+		75021789221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		7502178A221F6B1800248D07 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		7502178B221F6B1800248D07 /* vdev_indirect_mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_indirect_mapping.h; sourceTree = "<group>"; };
+		7502178C221F6B1800248D07 /* zio_checksum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zio_checksum.h; sourceTree = "<group>"; };
+		7502178D221F6B1800248D07 /* trace_dbgmsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_dbgmsg.h; sourceTree = "<group>"; };
+		7502178E221F6B1800248D07 /* trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace.h; sourceTree = "<group>"; };
+		7502178F221F6B1800248D07 /* ldi_impl_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldi_impl_osx.h; sourceTree = "<group>"; };
+		75021790221F6B1800248D07 /* trace_dbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_dbuf.h; sourceTree = "<group>"; };
+		75021791221F6B1800248D07 /* u8_textprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = u8_textprep.h; sourceTree = "<group>"; };
+		75021792221F6B1800248D07 /* blkptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blkptr.h; sourceTree = "<group>"; };
+		75021793221F6B1800248D07 /* dmu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu.h; sourceTree = "<group>"; };
+		75021794221F6B1800248D07 /* trace_dmu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_dmu.h; sourceTree = "<group>"; };
+		75021795221F6B1800248D07 /* sa_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sa_impl.h; sourceTree = "<group>"; };
+		75021796221F6B1800248D07 /* zcp_iter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zcp_iter.h; sourceTree = "<group>"; };
+		75021797221F6B1800248D07 /* zil_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zil_impl.h; sourceTree = "<group>"; };
+		75021798221F6B1800248D07 /* rrwlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rrwlock.h; sourceTree = "<group>"; };
+		75021799221F6B1800248D07 /* zfeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfeature.h; sourceTree = "<group>"; };
+		7502179A221F6B1800248D07 /* arc_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arc_impl.h; sourceTree = "<group>"; };
+		7502179C221F6B1800248D07 /* eventdefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventdefs.h; sourceTree = "<group>"; };
+		7502179D221F6B1800248D07 /* zio_crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zio_crypt.h; sourceTree = "<group>"; };
+		7502179E221F6B1800248D07 /* zap_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zap_impl.h; sourceTree = "<group>"; };
+		7502179F221F6B1800248D07 /* zvolIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zvolIO.h; sourceTree = "<group>"; };
+		750217A0221F6B1800248D07 /* zfs_znode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_znode.h; sourceTree = "<group>"; };
+		750217A1221F6B1800248D07 /* cityhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cityhash.h; sourceTree = "<group>"; };
+		750217A2221F6B1800248D07 /* bqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bqueue.h; sourceTree = "<group>"; };
+		750217A3221F6B1800248D07 /* vdev_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_file.h; sourceTree = "<group>"; };
+		750217A4221F6B1800248D07 /* nvpair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nvpair.h; sourceTree = "<group>"; };
+		750217A5221F6B1800248D07 /* dmu_tx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dmu_tx.h; sourceTree = "<group>"; };
+		750217A6221F6B1800248D07 /* spa_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_boot.h; sourceTree = "<group>"; };
+		750217A7221F6B1800248D07 /* metaslab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metaslab.h; sourceTree = "<group>"; };
+		750217A8221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		750217A9221F6B1800248D07 /* txg_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = txg_impl.h; sourceTree = "<group>"; };
+		750217AA221F6B1800248D07 /* zthr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zthr.h; sourceTree = "<group>"; };
+		750217AB221F6B1800248D07 /* dsl_destroy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_destroy.h; sourceTree = "<group>"; };
+		750217AC221F6B1800248D07 /* dsl_scan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsl_scan.h; sourceTree = "<group>"; };
+		750217AD221F6B1800248D07 /* trace_zil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_zil.h; sourceTree = "<group>"; };
+		750217AE221F6B1800248D07 /* zil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zil.h; sourceTree = "<group>"; };
+		750217AF221F6B1800248D07 /* bplist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bplist.h; sourceTree = "<group>"; };
+		750217B0221F6B1800248D07 /* ldi_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldi_osx.h; sourceTree = "<group>"; };
+		750217B1221F6B1800248D07 /* vdev_removal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_removal.h; sourceTree = "<group>"; };
+		750217B2221F6B1800248D07 /* zfs_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_boot.h; sourceTree = "<group>"; };
+		750217B3221F6B1800248D07 /* zfs_ioctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zfs_ioctl.h; sourceTree = "<group>"; };
+		750217B4221F6B1800248D07 /* xvattr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xvattr.h; sourceTree = "<group>"; };
+		750217B5221F6B1800248D07 /* vdev_indirect_births.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdev_indirect_births.h; sourceTree = "<group>"; };
+		750217B6221F6B1800248D07 /* spa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa.h; sourceTree = "<group>"; };
+		750217B7221F6B1800248D07 /* bpobj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpobj.h; sourceTree = "<group>"; };
+		750217B8221F6B1800248D07 /* zio_compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zio_compress.h; sourceTree = "<group>"; };
+		750217BA221F6B1800248D07 /* blkdev_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blkdev_compat.h; sourceTree = "<group>"; };
+		750217BB221F6B1800248D07 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		750217BC221F6B1800248D07 /* kmap_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kmap_compat.h; sourceTree = "<group>"; };
+		750217BD221F6B1800248D07 /* xattr_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xattr_compat.h; sourceTree = "<group>"; };
+		750217BE221F6B1800248D07 /* dcache_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dcache_compat.h; sourceTree = "<group>"; };
+		750217BF221F6B1800248D07 /* utsname_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utsname_compat.h; sourceTree = "<group>"; };
+		750217C0221F6B1800248D07 /* vfs_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vfs_compat.h; sourceTree = "<group>"; };
+		750217C1221F6C4000248D07 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		7547CD7F21F8B5C300248D07 /* ZFSManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZFSManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7547CD8221F8B5C300248D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7547CD8421F8B5C300248D07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +551,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		750216F6221F67CB00248D07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7547CD7C21F8B5C300248D07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,14 +609,294 @@
 			isa = PBXGroup;
 			children = (
 				75A63C2D21F8E19600248D07 /* Connection.swift */,
+				750217C1221F6C4000248D07 /* Task.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		750216E8221F673D00248D07 /* zfs */ = {
+			isa = PBXGroup;
+			children = (
+				75021703221F6B1800248D07 /* include */,
+				750216EC221F673D00248D07 /* zfs_iter.c */,
+				750216ED221F673D00248D07 /* zfs_util.h */,
+				750216EF221F673D00248D07 /* zfs_osx.m */,
+				750216F0221F673D00248D07 /* zfs_iter.h */,
+				750216F1221F673D00248D07 /* zfs_osx.h */,
+				750216F2221F673D00248D07 /* Makefile.am */,
+				750216F3221F673D00248D07 /* zfs_main.c */,
+			);
+			name = zfs;
+			path = ../../Sources/GitHub/zfs/cmd/zfs;
+			sourceTree = "<group>";
+		};
+		750216FA221F67CB00248D07 /* zfs */ = {
+			isa = PBXGroup;
+			children = (
+				750216FB221F67CB00248D07 /* main.c */,
+			);
+			path = zfs;
+			sourceTree = "<group>";
+		};
+		75021703221F6B1800248D07 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				75021704221F6B1800248D07 /* zfeature_common.h */,
+				75021705221F6B1800248D07 /* zfs_namecheck.h */,
+				75021706221F6B1800248D07 /* zfs_fletcher.h */,
+				75021707221F6B1800248D07 /* zpios-internal.h */,
+				75021708221F6B1800248D07 /* libuutil.h */,
+				75021709221F6B1800248D07 /* Makefile.am */,
+				7502170A221F6B1800248D07 /* libuutil_common.h */,
+				7502170B221F6B1800248D07 /* libuutil_impl.h */,
+				7502170C221F6B1800248D07 /* zfs_comutil.h */,
+				7502170D221F6B1800248D07 /* libnvpair.h */,
+				7502170E221F6B1800248D07 /* zfs_deleg.h */,
+				7502170F221F6B1800248D07 /* libzfs.h */,
+				75021710221F6B1800248D07 /* zpios-ctl.h */,
+				75021711221F6B1800248D07 /* libzfs_core.h */,
+				75021712221F6B1800248D07 /* libdiskmgt.h */,
+				75021713221F6B1800248D07 /* zfs_prop.h */,
+				75021714221F6B1800248D07 /* libzfs_impl.h */,
+				75021715221F6B1800248D07 /* sys */,
+				750217B9221F6B1800248D07 /* linux */,
+			);
+			name = include;
+			path = ../../include;
+			sourceTree = "<group>";
+		};
+		75021715221F6B1800248D07 /* sys */ = {
+			isa = PBXGroup;
+			children = (
+				75021716221F6B1800248D07 /* hfs_internal.h */,
+				75021717221F6B1800248D07 /* unique.h */,
+				75021718221F6B1800248D07 /* dnode.h */,
+				75021719221F6B1800248D07 /* trace_dnode.h */,
+				7502171A221F6B1800248D07 /* avl.h */,
+				7502171B221F6B1800248D07 /* vdev.h */,
+				7502171C221F6B1800248D07 /* kstat_osx.h */,
+				7502171D221F6B1800248D07 /* uberblock.h */,
+				7502171E221F6B1800248D07 /* spa_checksum.h */,
+				7502171F221F6B1800248D07 /* vdev_disk.h */,
+				75021720221F6B1800248D07 /* sa.h */,
+				75021721221F6B1800248D07 /* dsl_deadlist.h */,
+				75021722221F6B1800248D07 /* dsl_bookmark.h */,
+				75021723221F6B1800248D07 /* ZFSDataset.h */,
+				75021724221F6B1800248D07 /* gfs.h */,
+				75021725221F6B1800248D07 /* mntent.h */,
+				75021726221F6B1800248D07 /* range_tree.h */,
+				75021727221F6B1800248D07 /* ZFSDatasetScheme.h */,
+				75021728221F6B1800248D07 /* finderinfo.h */,
+				75021729221F6B1800248D07 /* ZFSDatasetProxy.h */,
+				7502172A221F6B1800248D07 /* zfs_fuid.h */,
+				7502172B221F6B1800248D07 /* dsl_pool.h */,
+				7502172C221F6B1800248D07 /* vdev_impl.h */,
+				7502172D221F6B1800248D07 /* zfs_ctldir.h */,
+				7502172E221F6B1800248D07 /* lua */,
+				75021734221F6B1800248D07 /* dsl_crypt.h */,
+				75021735221F6B1800248D07 /* zfs_context.h */,
+				75021736221F6B1800248D07 /* trace_acl.h */,
+				75021737221F6B1800248D07 /* dsl_prop.h */,
+				75021738221F6B1800248D07 /* zfs_context_userland.h */,
+				75021739221F6B1800248D07 /* sha2.h */,
+				7502173A221F6B1800248D07 /* zfs_vfsops.h */,
+				7502173B221F6B1800248D07 /* dmu_traverse.h */,
+				7502173C221F6B1800248D07 /* zvol.h */,
+				7502173D221F6B1800248D07 /* zfs_acl.h */,
+				7502173E221F6B1800248D07 /* dmu_send.h */,
+				7502173F221F6B1800248D07 /* hkdf.h */,
+				75021740221F6B1800248D07 /* zfs_rlock.h */,
+				75021741221F6B1800248D07 /* dmu_zfetch.h */,
+				75021742221F6B1800248D07 /* uio_impl.h */,
+				75021743221F6B1800248D07 /* dsl_dataset.h */,
+				75021744221F6B1800248D07 /* skein.h */,
+				75021745221F6B1800248D07 /* zio_impl.h */,
+				75021746221F6B1800248D07 /* zap.h */,
+				75021747221F6B1800248D07 /* ZFSPool.h */,
+				75021748221F6B1800248D07 /* spa_checkpoint.h */,
+				75021749221F6B1800248D07 /* dmu_impl.h */,
+				7502174A221F6B1800248D07 /* zfs_context_kernel.h */,
+				7502174B221F6B1800248D07 /* zfs_delay.h */,
+				7502174C221F6B1800248D07 /* abd.h */,
+				7502174D221F6B1800248D07 /* multilist.h */,
+				7502174E221F6B1800248D07 /* dbuf.h */,
+				7502174F221F6B1800248D07 /* zpl.h */,
+				75021750221F6B1800248D07 /* zcp_prop.h */,
+				75021751221F6B1800248D07 /* zfs_debug.h */,
+				75021752221F6B1800248D07 /* zfs_dir.h */,
+				75021753221F6B1800248D07 /* dmu_objset.h */,
+				75021754221F6B1800248D07 /* zfs_stat.h */,
+				75021755221F6B1800248D07 /* zfs_sa.h */,
+				75021756221F6B1800248D07 /* refcount.h */,
+				75021757221F6B1800248D07 /* uuid.h */,
+				75021758221F6B1800248D07 /* aggsum.h */,
+				75021759221F6B1800248D07 /* dsl_dir.h */,
+				7502175A221F6B1800248D07 /* vdev_initialize.h */,
+				7502175B221F6B1800248D07 /* bptree.h */,
+				7502175C221F6B1800248D07 /* zfs_onexit.h */,
+				7502175D221F6B1800248D07 /* fm */,
+				75021764221F6B1800248D07 /* edonr.h */,
+				75021765221F6B1800248D07 /* zcp.h */,
+				75021766221F6B1800248D07 /* fs */,
+				75021769221F6B1800248D07 /* trace_multilist.h */,
+				7502176A221F6B1800248D07 /* space_map.h */,
+				7502176B221F6B1800248D07 /* mmp.h */,
+				7502176C221F6B1800248D07 /* zio_priority.h */,
+				7502176D221F6B1800248D07 /* ddt.h */,
+				7502176E221F6B1800248D07 /* ldi_buf.h */,
+				7502176F221F6B1800248D07 /* sysevent.h */,
+				75021770221F6B1800248D07 /* nvpair_impl.h */,
+				75021771221F6B1800248D07 /* space_reftree.h */,
+				75021772221F6B1800248D07 /* zrlock.h */,
+				75021773221F6B1800248D07 /* efi_partition.h */,
+				75021774221F6B1800248D07 /* trace_zrlock.h */,
+				75021775221F6B1800248D07 /* dsl_deleg.h */,
+				75021776221F6B1800248D07 /* zcp_global.h */,
+				75021777221F6B1800248D07 /* dsl_synctask.h */,
+				75021778221F6B1800248D07 /* u8_textprep_data.h */,
+				75021779221F6B1800248D07 /* avl_impl.h */,
+				7502177A221F6B1800248D07 /* trace_txg.h */,
+				7502177B221F6B1800248D07 /* txg.h */,
+				7502177C221F6B1800248D07 /* metaslab_impl.h */,
+				7502177D221F6B1800248D07 /* dsl_userhold.h */,
+				7502177E221F6B1800248D07 /* zfs_vnops.h */,
+				7502177F221F6B1800248D07 /* zio.h */,
+				75021780221F6B1800248D07 /* zap_leaf.h */,
+				75021781221F6B1800248D07 /* spa_impl.h */,
+				75021782221F6B1800248D07 /* uberblock_impl.h */,
+				75021783221F6B1800248D07 /* trace_arc.h */,
+				75021784221F6B1800248D07 /* arc.h */,
+				75021785221F6B1800248D07 /* zfs_mount.h */,
+				75021786221F6B1800248D07 /* crypto */,
+				7502178B221F6B1800248D07 /* vdev_indirect_mapping.h */,
+				7502178C221F6B1800248D07 /* zio_checksum.h */,
+				7502178D221F6B1800248D07 /* trace_dbgmsg.h */,
+				7502178E221F6B1800248D07 /* trace.h */,
+				7502178F221F6B1800248D07 /* ldi_impl_osx.h */,
+				75021790221F6B1800248D07 /* trace_dbuf.h */,
+				75021791221F6B1800248D07 /* u8_textprep.h */,
+				75021792221F6B1800248D07 /* blkptr.h */,
+				75021793221F6B1800248D07 /* dmu.h */,
+				75021794221F6B1800248D07 /* trace_dmu.h */,
+				75021795221F6B1800248D07 /* sa_impl.h */,
+				75021796221F6B1800248D07 /* zcp_iter.h */,
+				75021797221F6B1800248D07 /* zil_impl.h */,
+				75021798221F6B1800248D07 /* rrwlock.h */,
+				75021799221F6B1800248D07 /* zfeature.h */,
+				7502179A221F6B1800248D07 /* arc_impl.h */,
+				7502179B221F6B1800248D07 /* sysevent */,
+				7502179D221F6B1800248D07 /* zio_crypt.h */,
+				7502179E221F6B1800248D07 /* zap_impl.h */,
+				7502179F221F6B1800248D07 /* zvolIO.h */,
+				750217A0221F6B1800248D07 /* zfs_znode.h */,
+				750217A1221F6B1800248D07 /* cityhash.h */,
+				750217A2221F6B1800248D07 /* bqueue.h */,
+				750217A3221F6B1800248D07 /* vdev_file.h */,
+				750217A4221F6B1800248D07 /* nvpair.h */,
+				750217A5221F6B1800248D07 /* dmu_tx.h */,
+				750217A6221F6B1800248D07 /* spa_boot.h */,
+				750217A7221F6B1800248D07 /* metaslab.h */,
+				750217A8221F6B1800248D07 /* Makefile.am */,
+				750217A9221F6B1800248D07 /* txg_impl.h */,
+				750217AA221F6B1800248D07 /* zthr.h */,
+				750217AB221F6B1800248D07 /* dsl_destroy.h */,
+				750217AC221F6B1800248D07 /* dsl_scan.h */,
+				750217AD221F6B1800248D07 /* trace_zil.h */,
+				750217AE221F6B1800248D07 /* zil.h */,
+				750217AF221F6B1800248D07 /* bplist.h */,
+				750217B0221F6B1800248D07 /* ldi_osx.h */,
+				750217B1221F6B1800248D07 /* vdev_removal.h */,
+				750217B2221F6B1800248D07 /* zfs_boot.h */,
+				750217B3221F6B1800248D07 /* zfs_ioctl.h */,
+				750217B4221F6B1800248D07 /* xvattr.h */,
+				750217B5221F6B1800248D07 /* vdev_indirect_births.h */,
+				750217B6221F6B1800248D07 /* spa.h */,
+				750217B7221F6B1800248D07 /* bpobj.h */,
+				750217B8221F6B1800248D07 /* zio_compress.h */,
+			);
+			path = sys;
+			sourceTree = "<group>";
+		};
+		7502172E221F6B1800248D07 /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				7502172F221F6B1800248D07 /* Makefile.am */,
+				75021730221F6B1800248D07 /* lua.h */,
+				75021731221F6B1800248D07 /* lauxlib.h */,
+				75021732221F6B1800248D07 /* luaconf.h */,
+				75021733221F6B1800248D07 /* lualib.h */,
+			);
+			path = lua;
+			sourceTree = "<group>";
+		};
+		7502175D221F6B1800248D07 /* fm */ = {
+			isa = PBXGroup;
+			children = (
+				7502175E221F6B1800248D07 /* protocol.h */,
+				7502175F221F6B1800248D07 /* fs */,
+				75021762221F6B1800248D07 /* Makefile.am */,
+				75021763221F6B1800248D07 /* util.h */,
+			);
+			path = fm;
+			sourceTree = "<group>";
+		};
+		7502175F221F6B1800248D07 /* fs */ = {
+			isa = PBXGroup;
+			children = (
+				75021760221F6B1800248D07 /* Makefile.am */,
+				75021761221F6B1800248D07 /* zfs.h */,
+			);
+			path = fs;
+			sourceTree = "<group>";
+		};
+		75021766221F6B1800248D07 /* fs */ = {
+			isa = PBXGroup;
+			children = (
+				75021767221F6B1800248D07 /* zfs.h */,
+				75021768221F6B1800248D07 /* Makefile.am */,
+			);
+			path = fs;
+			sourceTree = "<group>";
+		};
+		75021786221F6B1800248D07 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				75021787221F6B1800248D07 /* api.h */,
+				75021788221F6B1800248D07 /* icp.h */,
+				75021789221F6B1800248D07 /* Makefile.am */,
+				7502178A221F6B1800248D07 /* common.h */,
+			);
+			path = crypto;
+			sourceTree = "<group>";
+		};
+		7502179B221F6B1800248D07 /* sysevent */ = {
+			isa = PBXGroup;
+			children = (
+				7502179C221F6B1800248D07 /* eventdefs.h */,
+			);
+			path = sysevent;
+			sourceTree = "<group>";
+		};
+		750217B9221F6B1800248D07 /* linux */ = {
+			isa = PBXGroup;
+			children = (
+				750217BA221F6B1800248D07 /* blkdev_compat.h */,
+				750217BB221F6B1800248D07 /* Makefile.am */,
+				750217BC221F6B1800248D07 /* kmap_compat.h */,
+				750217BD221F6B1800248D07 /* xattr_compat.h */,
+				750217BE221F6B1800248D07 /* dcache_compat.h */,
+				750217BF221F6B1800248D07 /* utsname_compat.h */,
+				750217C0221F6B1800248D07 /* vfs_compat.h */,
+			);
+			path = linux;
 			sourceTree = "<group>";
 		};
 		7547CD7621F8B5C300248D07 = {
 			isa = PBXGroup;
 			children = (
+				750216E8221F673D00248D07 /* zfs */,
 				7547CD8121F8B5C300248D07 /* ZFSManager */,
+				750216FA221F67CB00248D07 /* zfs */,
 				7547CD8021F8B5C300248D07 /* Products */,
 				76BC921642E8C43A4BC60D55 /* Pods */,
 				E1C80560B3372C8BEEFF3328 /* Frameworks */,
@@ -416,6 +907,7 @@
 			isa = PBXGroup;
 			children = (
 				7547CD7F21F8B5C300248D07 /* ZFSManager.app */,
+				750216F9221F67CB00248D07 /* zfs */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -668,6 +1160,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		750216F8221F67CB00248D07 /* zfs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 750216FD221F67CB00248D07 /* Build configuration list for PBXNativeTarget "zfs" */;
+			buildPhases = (
+				750216F5221F67CB00248D07 /* Sources */,
+				750216F6221F67CB00248D07 /* Frameworks */,
+				750216F7221F67CB00248D07 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = zfs;
+			productName = zfs;
+			productReference = 750216F9221F67CB00248D07 /* zfs */;
+			productType = "com.apple.product-type.tool";
+		};
 		7547CD7E21F8B5C300248D07 /* ZFSManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7547CD8F21F8B5C400248D07 /* Build configuration list for PBXNativeTarget "ZFSManager" */;
@@ -698,6 +1207,9 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Dave Carlton";
 				TargetAttributes = {
+					750216F8221F67CB00248D07 = {
+						CreatedOnToolsVersion = 10.2;
+					};
 					7547CD7E21F8B5C300248D07 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
@@ -718,6 +1230,7 @@
 			projectRoot = "";
 			targets = (
 				7547CD7E21F8B5C300248D07 /* ZFSManager */,
+				750216F8221F67CB00248D07 /* zfs */,
 			);
 		};
 /* End PBXProject section */
@@ -914,6 +1427,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		750216F5221F67CB00248D07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75021700221F67EB00248D07 /* zfs_iter.c in Sources */,
+				75021701221F67EB00248D07 /* zfs_osx.m in Sources */,
+				75021702221F67EB00248D07 /* zfs_main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7547CD7B21F8B5C300248D07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -922,6 +1445,7 @@
 				75A7F35021FB767300248D07 /* SPFavoriteNode.swift in Sources */,
 				75A7F4CE220068E800248D07 /* SPKeychain.swift in Sources */,
 				75A63C3021F8E49700248D07 /* SSHConnectionController.swift in Sources */,
+				750217C2221F6C4000248D07 /* Task.swift in Sources */,
 				7547CD8521F8B5C300248D07 /* ViewController.swift in Sources */,
 				75A7F35721FFC90A00248D07 /* SPAlertSheets.swift in Sources */,
 				750216C9221F4D4B00248D07 /* ZFSMainWindowController.swift in Sources */,
@@ -957,6 +1481,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		750216FE221F67CB00248D07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 98LGF33H43;
+				HEADER_SEARCH_PATHS = (
+					/Users/davec/Sources/GitHub/zfs/include,
+					/Users/davec/Sources/GitHub/zfs/lib/libspl/include/,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		750216FF221F67CB00248D07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 98LGF33H43;
+				HEADER_SEARCH_PATHS = (
+					/Users/davec/Sources/GitHub/zfs/include,
+					/Users/davec/Sources/GitHub/zfs/lib/libspl/include/,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		7547CD8D21F8B5C400248D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1128,6 +1680,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		750216FD221F67CB00248D07 /* Build configuration list for PBXNativeTarget "zfs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				750216FE221F67CB00248D07 /* Debug */,
+				750216FF221F67CB00248D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7547CD7A21F8B5C300248D07 /* Build configuration list for PBXProject "ZFSManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
