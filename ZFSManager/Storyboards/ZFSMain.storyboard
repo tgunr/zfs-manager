@@ -8,7 +8,7 @@
         <!--ZFS-->
         <scene sceneID="AeO-9A-otN">
             <objects>
-                <tabViewController title="ZFS" selectedTabViewItemIndex="2" id="Vra-pz-6WZ" sceneMemberID="viewController">
+                <tabViewController title="ZFS" selectedTabViewItemIndex="2" id="Vra-pz-6WZ" customClass="ZFSMainViewController" customModule="ZFSManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="Sg1-al-oXS"/>
                         <tabViewItem id="6x6-cs-FhH"/>
@@ -23,7 +23,11 @@
                         </connections>
                     </tabView>
                     <connections>
+                        <outlet property="mainTabView" destination="ZoV-23-Y2K" id="jMs-2i-UiZ"/>
+                        <outlet property="poolsTabView" destination="obt-2F-0o0" id="ZhP-dc-wZQ"/>
+                        <outlet property="snapshotsTabView" destination="6x6-cs-FhH" id="JKG-cF-GVs"/>
                         <outlet property="tabView" destination="ZoV-23-Y2K" id="cNw-TW-VTs"/>
+                        <outlet property="volumesTabView" destination="Sg1-al-oXS" id="6bC-8P-Uz9"/>
                         <segue destination="BRm-57-7I9" kind="relationship" relationship="tabItems" id="8sC-F9-Pme"/>
                         <segue destination="pUM-T9-f5B" kind="relationship" relationship="tabItems" id="PRL-IV-Ohy"/>
                         <segue destination="UWv-Fp-8pA" kind="relationship" relationship="tabItems" id="58C-e2-BoB"/>
