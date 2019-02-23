@@ -5,11 +5,21 @@
 
 import Cocoa
 
-class ZFSMainPoolViewController: ZFSMainTabViewController, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource {
+class ZFSPoolViewController: ZFSMainTabViewController, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource {
     var poolStrings: [String]?
     var zfsPools: ZFSPools?
     var zfsPoolsHeader: [String]?
     var poolNames: [String]?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        zfsPools = ZFSPools()
+        zfsPoolsHeader = zfsPools?.headers
+    }
+
+}
+
+class ZFSMainPoolViewController: ZFSPoolViewController {
     
     @IBOutlet weak var poolsSourceList: NSOutlineView!
     @IBOutlet weak var poolsTableHeaderView: NSTableHeaderView!
@@ -19,8 +29,6 @@ class ZFSMainPoolViewController: ZFSMainTabViewController, NSTableViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        zfsPools = ZFSPools()
-        zfsPoolsHeader = zfsPools?.headers
         createPoolsHeaderTable()
     }
 
@@ -38,34 +46,10 @@ class ZFSMainPoolViewController: ZFSMainTabViewController, NSTableViewDelegate, 
                 newColumn.title = heading
                 newColumn.sizeToFit()
                 newColumn.minWidth = 50
-//                let headingSize = heading.count
                 poolsTableView.addTableColumn(newColumn)
             }
         }
     }
-    
-    
-//    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-//        let newRowView = NSTableView().makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: String(row)), owner: self) as? NSTableRowView
-//        if let poolData = zfsPools?.pools?[row].data {
-//            _ = 0
-//            for column in poolData {
-//                let newColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: column.key))
-//                newColumn.sizeToFit()
-//
-//                let newTextView = NSText()
-//                let something = column.value
-//                newTextView.string = something
-//                tableView.addTableColumn(colTable)
-//            }
-//        }
-//
-//        return newRowView
-//    }
-
-//    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-//        fatalError("tableView(_:objectValueFor:row:) has not been implemented")
-//    }
 }
 
 extension ZFSMainPoolViewController {
@@ -128,4 +112,8 @@ extension ZFSMainPoolViewController {
     }
     
 
+}
+
+class ZFSPoolPropertiesViewController: ZFSPoolViewController {
+    
 }
