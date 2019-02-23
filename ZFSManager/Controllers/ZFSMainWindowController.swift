@@ -34,7 +34,7 @@ class ZFSMainViewController: NSTabViewController {
     }
 }
 
-class ZFSMainTabViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class ZFSMainTabViewController: NSViewController {
     private var appDelegate = NSApplication.shared.delegate as! AppDelegate
     var selectedView: ZFSMainTabViewController?
     
