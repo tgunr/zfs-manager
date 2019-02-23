@@ -6,21 +6,45 @@
 import Cocoa
 
 class ZFSMainPoolViewController: ZFSMainTabViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
-    @IBOutlet weak var poolsTable: NSOutlineView!
+    var poolStrings: [String]?
     var pools: [Pool]?
+    var poolsHeader: [String] = ["NAME", "SIZE", "ALLOC", "FREE", "CKPOINT", "EXPANDSZ", "FRAG", "CAP", "DEDUP", "HEALTH", "ALTROOT"]
     var poolNames: [String]?
-
+    
+    @IBOutlet weak var poolsSourceList: NSOutlineView!
+    @IBOutlet weak var poolsTableHeaderView: NSTableHeaderView!
+    @IBOutlet weak var poolsTableView: NSTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getPools()
+        createPoolsHeaderTable()
     }
 
+    func createPoolsHeaderTable() {
+        if (pools != nil ) {
+            poolsTableView.dataSource = self
+            let columns = poolsTableView.tableColumns
+            for column in columns {
+                poolsTableView.removeTableColumn(column)
+            }
+            for heading in poolsHeader {
+                let newColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: heading))
+                newColumn.tableView = poolsTableView
+                newColumn.title = heading
+                poolsTableView.addTableColumn(newColumn)
+            }
+        }
+    }
+    
     func getPools() {
         let result = shell(cmd: "/usr/local/bin/zpool", args: ["list", "-H"])
         if (result.exitCode == 0) {
             pools = []
             poolNames = []
-            for poolString in result.output {
+            poolStrings = result.output
+            
+            for poolString in poolStrings ?? [] {
                 let newPool = Pool().stringToPool(poolString: poolString)
                 pools?.append(newPool)
                 poolNames?.append(newPool.name)
@@ -45,7 +69,7 @@ extension ZFSMainPoolViewController {
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return poolNames?[index] as Any
+        return pools?[index].name as Any
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
@@ -62,8 +86,8 @@ extension ZFSMainPoolViewController {
 
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn:  NSTableColumn?,
      byItem item: Any?) -> Any? {
-//        let poolItem = item as! Pool
-        return item
+        let poolItem = item as? Pool
+        return poolItem?.name
      }
 
 }
