@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ZFSMainViewController: NSTabViewController {
+class ZFSMainVC: NSTabViewController {
     private var appDelegate = NSApplication.shared.delegate as! AppDelegate
     var tabviewController: ZFSMainTabViewController?
     var zfsCommand = ""
