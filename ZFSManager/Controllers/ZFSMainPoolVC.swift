@@ -14,12 +14,14 @@ class ZFSPoolVC: ZFSMainTabViewController, NSTableViewDelegate, NSTableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         zfsPools = ZFSPools()
-        zfsPoolsHeader = zfsPools?.headers
+        zfsPoolsHeader = zfsPools?.zpoolsHeadings
     }
 
 }
 
 class ZFSMainPoolVC: ZFSPoolVC {
+    var selectedIndex: Int?
+    var selectedPool: String?
     
     @IBOutlet weak var poolsSourceList: NSOutlineView!
     @IBOutlet weak var poolsTableHeaderView: NSTableHeaderView!
@@ -30,6 +32,11 @@ class ZFSMainPoolVC: ZFSPoolVC {
         createPoolsHeaderTable()
     }
 
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        let destController = segue.destinationController as! ZFSPoolPropertiesVC
+        destController.delegate = self
+    }
+    
     func createPoolsHeaderTable() {
         if (zfsPoolsHeader != nil ) {
             poolsTableView.dataSource = self
@@ -58,20 +65,27 @@ extension ZFSMainPoolVC {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let key: String = (tableColumn?.identifier.rawValue)!
         let pool = zfsPools?.pools?[row]
-        let value = pool?.data[key]
-        return value
+        var i = 0
+        for id in pool?.data ?? [] {
+            let aName = id.name
+            if aName == key {
+                return id.value
+            }
+            i += 1
+        }
+        return nil
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if zfsPools == nil {
             zfsPools = ZFSPools()
-            zfsPoolsHeader = zfsPools?.headers
+            zfsPoolsHeader = zfsPools?.zpoolsHeadings
         }
         return zfsPools?.pools?.count ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return zfsPools?.pools?[index].data["NAME"] as Any
+        return zfsPools?.pools?[index].name as Any
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
@@ -83,7 +97,8 @@ extension ZFSMainPoolVC {
         guard let outlineView = notification.object as? NSOutlineView else {
             return
         }
-        let selectedIndex = outlineView.selectedRow
+        selectedIndex = outlineView.selectedRow
+        selectedPool = zfsPools?.pools?[selectedIndex!].name
     }
 
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn:  NSTableColumn?,

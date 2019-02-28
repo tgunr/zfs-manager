@@ -20,8 +20,8 @@
 		75021701221F67EB00248D07 /* zfs_osx.m in Sources */ = {isa = PBXBuildFile; fileRef = 750216EF221F673D00248D07 /* zfs_osx.m */; };
 		75021702221F67EB00248D07 /* zfs_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 750216F3221F673D00248D07 /* zfs_main.c */; };
 		750217C2221F6C4000248D07 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750217C1221F6C4000248D07 /* Functions.swift */; };
-		750217C52221A27800248D07 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750217C42221A27800248D07 /* Extensions.swift */; };
 		750217C72221AD4200248D07 /* ZFSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750217C62221AD4200248D07 /* ZFSConstants.swift */; };
+		75192CB422286DEA00248D07 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750217C42221A27800248D07 /* Extensions.swift */; };
 		7526C5162221F2B300248D07 /* ZFSPoolProperties.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7526C5152221F2B300248D07 /* ZFSPoolProperties.storyboard */; };
 		7526C5182221F36C00248D07 /* ZFSVolumes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7526C5172221F36C00248D07 /* ZFSVolumes.storyboard */; };
 		7547CD8321F8B5C300248D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547CD8221F8B5C300248D07 /* AppDelegate.swift */; };
@@ -416,7 +416,6 @@
 		7547CD8C21F8B5C400248D07 /* ZFSManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZFSManager.entitlements; sourceTree = "<group>"; };
 		7573C38D2221FB4900248D07 /* ZFSPoolPropertiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFSPoolPropertiesVC.swift; sourceTree = "<group>"; };
 		7573C38F2222BC8700248D07 /* ZFSConnection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ZFSConnection.storyboard; path = /Users/davec/Desktop/ZFSManager/ZFSManager/Storyboards/ZFSConnection.storyboard; sourceTree = "<absolute>"; };
-		7573C3902222BD3D00248D07 /* ZFS.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ZFS.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		758E71142221F3D400248D07 /* ZFSSnapShots.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ZFSSnapShots.storyboard; sourceTree = "<group>"; };
 		75A63C2D21F8E19600248D07 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		75A63C2F21F8E49700248D07 /* SSHConnectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHConnectionController.swift; sourceTree = "<group>"; };
@@ -922,7 +921,6 @@
 		7547CD7621F8B5C300248D07 = {
 			isa = PBXGroup;
 			children = (
-				7573C3902222BD3D00248D07 /* ZFS.playground */,
 				750216E8221F673D00248D07 /* zfs */,
 				7547CD8121F8B5C300248D07 /* ZFSManager */,
 				7547CD8021F8B5C300248D07 /* Products */,
@@ -1479,6 +1477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75192CB422286DEA00248D07 /* Extensions.swift in Sources */,
 				75A7F35E22005F7B00248D07 /* SPConnectionControllerDelegateProtocol.swift in Sources */,
 				75A7F35021FB767300248D07 /* SPFavoriteNode.swift in Sources */,
 				75A7F4CE220068E800248D07 /* SPKeychain.swift in Sources */,
@@ -1505,7 +1504,6 @@
 				75A63D4821F93CF200248D07 /* SPGroupNode.swift in Sources */,
 				75A63D3A21F8FA5400248D07 /* ZFSFavoritesOutlineView.swift in Sources */,
 				5AF0DA2D2180528777E3CBF2 /* SPSplitView.swift in Sources */,
-				750217C52221A27800248D07 /* Extensions.swift in Sources */,
 				75A63D5121F9E3C200248D07 /* SPStringAdditions.swift in Sources */,
 				75A63D4C21F9E2B100248D07 /* SPStringAdditionsTests.swift in Sources */,
 				5AF0D62F291040897EA3ACC1 /* ZFSMainPoolVC.swift in Sources */,

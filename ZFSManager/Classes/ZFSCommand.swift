@@ -24,6 +24,7 @@ struct ZFSCommand {
     }
     
     mutating func execute() {
+//        print("command: \(command) args: \(args)")
         let result = shell(cmd: command, args: args)
         data = result.output
         error = result.error
@@ -54,19 +55,21 @@ struct ZFSCommand {
         return pData
     }
     
-    func allLinesData(using: [String]) -> [[String:String]]? {
-        var result = [[String:String]]()
+    func allLinesData(using: [String]?) -> [[String:String]]? {
+        var result: [[String:String]]? = [[String:String]]()
         if ( exitCode == 0) {
             for aLine in data {
                 let thisLine = aLine.components(separatedBy: "\t")
-                var theData: [String:String] = [String:String]()
+                //                print("thisLine: \(thisLine)")
+                var theData: [String:String]? = [String:String]()
                 var colNum = 0
-                for heading in using {
+                for heading in using ?? [""] {
                     let dataValue = thisLine[colNum]
-                    theData[heading] = dataValue
+                    theData?[heading] = dataValue
                     colNum += 1
+                    //                    print("theData: \(String(describing: theData?[heading]))")
                 }
-                result.append(theData)
+                result?.append(theData!)
             }
         }
         return result
