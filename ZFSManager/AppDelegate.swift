@@ -10,11 +10,13 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
     var connection: Connection?
+    var pools: ZFSPools?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        if pools == nil {
+            pools = ZFSPools()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -6,15 +6,15 @@
 import Cocoa
 
 class ZFSPoolVC: ZFSMainTabViewController, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource {
+    private var appDelegate = NSApplication.shared.delegate as! AppDelegate
     var poolStrings: [String]?
     var zfsPools: ZFSPools?
-    var zfsPoolsHeader: [String]?
     var poolNames: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         zfsPools = ZFSPools()
-        zfsPoolsHeader = zfsPools?.zpoolsHeadings
+        appDelegate.pools = zfsPools
     }
 
 }
@@ -26,7 +26,13 @@ class ZFSMainPoolVC: ZFSPoolVC {
     @IBOutlet weak var poolsSourceList: NSOutlineView!
     @IBOutlet weak var poolsTableHeaderView: NSTableHeaderView!
     @IBOutlet weak var poolsTableView: NSTableView!
-    
+
+    @IBAction func poolsAction(_ sender: Any) {
+        selectedIndex = poolsSourceList.selectedRow
+        selectedPool = zfsPools?.pools?[selectedIndex!].name
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         createPoolsHeaderTable()
@@ -36,16 +42,16 @@ class ZFSMainPoolVC: ZFSPoolVC {
         let destController = segue.destinationController as! ZFSPoolPropertiesVC
         destController.delegate = self
     }
-    
+
     func createPoolsHeaderTable() {
-        if (zfsPoolsHeader != nil ) {
+        if let zfsPoolsHeader = zfsPools?.zpoolsHeadings {
             poolsTableView.dataSource = self
             poolsTableView.delegate = self
             let columns = poolsTableView.tableColumns
             for column in columns {
                 poolsTableView.removeTableColumn(column)
             }
-            for heading in zfsPoolsHeader! {
+            for heading in zfsPoolsHeader {
                 let newColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: heading))
                 newColumn.tableView = poolsTableView
                 newColumn.title = heading
@@ -58,6 +64,9 @@ class ZFSMainPoolVC: ZFSPoolVC {
 }
 
 extension ZFSMainPoolVC {
+    // MARK: -
+    // MARK: DataSource
+
     func numberOfRows(in tableView: NSTableView) -> Int {
         return zfsPools?.pools?.count ?? 0
     }
@@ -79,7 +88,6 @@ extension ZFSMainPoolVC {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if zfsPools == nil {
             zfsPools = ZFSPools()
-            zfsPoolsHeader = zfsPools?.zpoolsHeadings
         }
         return zfsPools?.pools?.count ?? 0
     }
@@ -92,6 +100,21 @@ extension ZFSMainPoolVC {
         return false
     }
 
+    // MARK: -
+    // MARK: Delegate Methods
+    public func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        fatalError("tableView(_:shouldSelectRow:) has not been implemented")
+    }
+
+    public func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
+    }
+
+    public func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+        fatalError("tableView(_:rowActionsForRow:edge:) has not been implemented")
+    }
+
+    public func tableViewSelectionIsChanging(_ notification: Notification) {
+    }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
         guard let outlineView = notification.object as? NSOutlineView else {

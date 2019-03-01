@@ -19,13 +19,12 @@ class ZFSPoolPropertiesVC: ZFSPoolVC {
         super.viewDidLoad()
         poolPropTableView.dataSource = self
         poolPropTableView.delegate = self
-
     }
 
     @IBAction func okClick(_ sender: Any) {
         self.dismiss(sender)
     }
-    
+
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         fatalError("tableView(_:rowViewForRow:) has not been implemented")
     }
@@ -33,21 +32,6 @@ class ZFSPoolPropertiesVC: ZFSPoolVC {
     func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
     }
 
-//    func tableView(_ tableView: NSTableView, dataCellFor tableColumn: NSTableColumn?, row: Int) -> NSCell? {
-//        if let poolNum = delegate?.selectedIndex {
-//            let thePool = delegate?.zfsPools?.pools?[row]
-//            let prop = thePool?.properties[row]
-//            for aProp in prop! {
-//                if aProp.name == tableColumn?.title.uppercased() {
-//                    return aProp.value
-//                }
-//            }
-////            print("row: \(row) pool: \(String(describing: pool))")
-////            let propName = pool?.properties[row]
-//        }
-//        return nil
-////        let prop = zfsPools?.pools?[0].properties[0]
-//    }
 
     func tableView(_ tableView: NSTableView, didClick tableColumn: NSTableColumn) {
     }
@@ -59,24 +43,26 @@ class ZFSPoolPropertiesVC: ZFSPoolVC {
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let thePool = zfsPools?.pools?[(delegate?.selectedIndex)!]
-        let prop = thePool?.properties[row]
-        for aProp in prop! {
-            if aProp.name == tableColumn?.title.uppercased() {
-                return aProp.value
+        if let index = delegate?.selectedIndex {
+            let thePool = zfsPools?.pools?[index]
+            let prop = thePool?.properties[row]
+            for aPropElement in prop! {
+                if aPropElement.name == tableColumn?.title.uppercased() {
+                    return aPropElement.value
+                }
             }
+//            print("row: \(row) column: \(String(describing: tableColumn?.title))")
         }
-//        print("row: \(row) column: \(String(describing: tableColumn?.title))")
         return nil
     }
 
     func createPoolPropertiesHeaderTable() {
-        if (zfsPoolsHeader != nil ) {
+        if let zfsPoolsHeader = zfsPools?.zpoolsHeadings {
             let columns = poolPropTableView.tableColumns
             for column in columns {
                 poolPropTableView.removeTableColumn(column)
             }
-            for heading in zfsPoolsHeader! {
+            for heading in zfsPoolsHeader {
                 let newColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: heading))
                 newColumn.tableView = poolPropTableView
                 newColumn.title = heading
