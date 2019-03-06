@@ -4,39 +4,39 @@
 //
 
 import Foundation
-struct ZFSPoolData {
-    var name: String?
-    var value: String?
-    
-    init(header: String, data: String) {
-        name = header
-        value = data
-    }
-}
-struct ZFSPoolProperty {
+
+class ZFS {
     var name: String?
     var value: String?
 
-    init(header: String, value: String) {
-        self.name = header
+    init(name: String, value: String) {
+        self.name = name
         self.value = value
     }
+}
+
+class ZFSPoolData: ZFS {
+}
+
+class ZFSPoolProperty: ZFS {
 }
 
 struct ZFSPoolProperties {
     var array: [ZFSPoolProperty]?
 }
+
 struct ZFSPool {
     var name: String?
     // Need arrays for indexed data use in viewControllers
     var data = [ZFSPoolData]()
     var properties = [[ZFSPoolProperty]]()
-    
+    var volumes = [ZFSVolumes]()
+
     mutating func poolData(aPool: [String:String], headingArray: [String]) {
         name = aPool["NAME"]
         for theHeader in headingArray {
             let itsValue = aPool[theHeader]
-            let zpoolData = ZFSPoolData(header: theHeader, data: itsValue!)
+            let zpoolData = ZFSPoolData(name: theHeader, value: itsValue!)
             self.data.append(zpoolData)
         }
     }
@@ -59,7 +59,7 @@ struct ZFSPool {
             var propertyList = [ZFSPoolProperty]()
             for theHeading in zpoolsHeadings! {
                 let itsValue = theData[theHeading] // zpoolsData ![theHeader]
-                let zpoolData = ZFSPoolProperty(header: theHeading, value: itsValue!)
+                let zpoolData = ZFSPoolProperty(name: theHeading, value: itsValue!)
                 propertyList.append(zpoolData)
             }
             self.properties.append(propertyList)
@@ -72,13 +72,14 @@ struct ZFSPool {
         poolProperties(name!)
     }
 
+
 }
 
-struct ZFSPools {
+class ZFSPools: NSObject {
     var zpoolsHeadings: [String]?
     var pools: [ZFSPool]? = []
     
-    init() {
+    override init() {
         var zpoolsData: [[String:String]]?
         
         // Get the list of the pools extracting the headings
@@ -93,7 +94,7 @@ struct ZFSPools {
         
         for aPool in zpoolsData! {
             if let headingArray = zpoolsHeadings {
-                var aZFSPool = ZFSPool(aPool: aPool, headingArray: headingArray)
+                let aZFSPool = ZFSPool(aPool: aPool, headingArray: headingArray)
                 pools?.append(aZFSPool)
             }
         }

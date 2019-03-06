@@ -8,7 +8,7 @@
         <!--ZFS-->
         <scene sceneID="AeO-9A-otN">
             <objects>
-                <tabViewController title="ZFS" selectedTabViewItemIndex="2" id="Vra-pz-6WZ" customClass="ZFSMainVC" customModule="ZFSManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController title="ZFS" selectedTabViewItemIndex="2" id="Vra-pz-6WZ" customClass="ZFSMainTVC" customModule="ZFSManager" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Volumes" id="ZMv-Oz-9Hv"/>
                         <tabViewItem label="Snapshots" id="hCq-s6-MgZ"/>
@@ -24,7 +24,10 @@
                     </tabView>
                     <connections>
                         <outlet property="mainTabView" destination="ZoV-23-Y2K" id="jMs-2i-UiZ"/>
+                        <outlet property="poolsTabView" destination="47h-tL-QxA" id="sgU-Il-lUa"/>
+                        <outlet property="snapshotsTabView" destination="hCq-s6-MgZ" id="bom-eq-dFN"/>
                         <outlet property="tabView" destination="ZoV-23-Y2K" id="cNw-TW-VTs"/>
+                        <outlet property="volumesTabView" destination="ZMv-Oz-9Hv" id="dHd-EN-jz9"/>
                         <segue destination="uW9-FB-vNV" kind="relationship" relationship="tabItems" id="Xg2-4E-Xb1"/>
                         <segue destination="7Mp-3p-g8B" kind="relationship" relationship="tabItems" id="foT-NB-jdb"/>
                         <segue destination="hgM-rO-axY" kind="relationship" relationship="tabItems" id="Eaf-OW-scC"/>

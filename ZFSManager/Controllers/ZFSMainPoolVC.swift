@@ -5,16 +5,15 @@
 
 import Cocoa
 
-class ZFSPoolVC: ZFSMainTabViewController, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource {
-    private var appDelegate = NSApplication.shared.delegate as! AppDelegate
+class ZFSPoolVC: ZFSMainTVC, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource {
     var poolStrings: [String]?
     var zfsPools: ZFSPools?
     var poolNames: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        zfsPools = ZFSPools()
-        appDelegate.pools = zfsPools
+//        zfsPools = ZFSPools()
+//        appDelegate.pools = zfsPools
     }
 
 }
@@ -86,9 +85,9 @@ extension ZFSMainPoolVC {
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if zfsPools == nil {
-            zfsPools = ZFSPools()
-        }
+//        if zfsPools == nil {
+//            zfsPools = ZFSPools()
+//        }
         return zfsPools?.pools?.count ?? 0
     }
 

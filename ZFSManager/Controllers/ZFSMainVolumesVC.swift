@@ -6,4 +6,21 @@
 //  Copyright © 2019 Dave Carlton. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+
+class ZFSMainVolumesVC: ZFSMainVC {
+    var pools: ZFSPools?
+    
+    @IBOutlet weak var volumesSourceList: NSOutlineView!
+    @IBOutlet weak var poolsPUB: NSPopUpButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        pools = self.appDelegate.pools
+    }
+}
+

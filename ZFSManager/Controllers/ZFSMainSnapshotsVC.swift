@@ -6,4 +6,14 @@
 //  Copyright © 2019 Dave Carlton. All rights reserved.
 //
 
-import Foundation
+import Cocoa
+
+class ZFSMainSnapshotsViewController: ZFSMainTVC {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+}
+

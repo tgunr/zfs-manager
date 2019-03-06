@@ -11,6 +11,8 @@
 		5AF0D31DD63B962EAC4D327B /* ZFSPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0D2D8E4056A7F540CB862 /* ZFSPool.swift */; };
 		5AF0D62F291040897EA3ACC1 /* ZFSMainPoolVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0DC221573A0311038DC80 /* ZFSMainPoolVC.swift */; };
 		5AF0DA2D2180528777E3CBF2 /* SPSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */; };
+		5AF0DB052C48B3E9F1455ED1 /* ZFSMainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0D5422DA592AF9CA92240 /* ZFSMainTVC.swift */; };
+		5AF0DB8CEAFC8C9D940F6D57 /* ZFSVolumes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0DC7CA443BFC759930B87 /* ZFSVolumes.swift */; };
 		750216C4221F466A00248D07 /* ConnectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C3221F466A00248D07 /* ConnectionsController.swift */; };
 		750216C9221F4D4B00248D07 /* ZFSMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750216C8221F4D4B00248D07 /* ZFSMainVC.swift */; };
 		750216D0221F4E4700248D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 750216CD221F4E4700248D07 /* Main.storyboard */; };
@@ -208,7 +210,9 @@
 		5A6B262E36204405065FDCF8 /* Pods_ZFSManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZFSManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF0D2D8E4056A7F540CB862 /* ZFSPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSPool.swift; sourceTree = "<group>"; };
 		5AF0D42AEDD569D540C1D969 /* SPSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSplitView.swift; sourceTree = "<group>"; };
+		5AF0D5422DA592AF9CA92240 /* ZFSMainTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainTVC.swift; sourceTree = "<group>"; };
 		5AF0DC221573A0311038DC80 /* ZFSMainPoolVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainPoolVC.swift; sourceTree = "<group>"; };
+		5AF0DC7CA443BFC759930B87 /* ZFSVolumes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSVolumes.swift; sourceTree = "<group>"; };
 		750216C3221F466A00248D07 /* ConnectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsController.swift; sourceTree = "<group>"; };
 		750216C8221F4D4B00248D07 /* ZFSMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFSMainVC.swift; sourceTree = "<group>"; };
 		750216D3221F507800248D07 /* ZFSMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZFSMain.storyboard; sourceTree = "<group>"; };
@@ -606,6 +610,7 @@
 				75E339F72221F63700248D07 /* ZFSMainSnapshotsVC.swift */,
 				5AF0DC221573A0311038DC80 /* ZFSMainPoolVC.swift */,
 				7573C38D2221FB4900248D07 /* ZFSPoolPropertiesVC.swift */,
+				5AF0D5422DA592AF9CA92240 /* ZFSMainTVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1127,6 +1132,7 @@
 				75A63D4221F917F700248D07 /* Tree Nodes */,
 				5AF0D2D8E4056A7F540CB862 /* ZFSPool.swift */,
 				750217C62221AD4200248D07 /* ZFSConstants.swift */,
+				5AF0DC7CA443BFC759930B87 /* ZFSVolumes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1444,16 +1450,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ZFSManager/Pods-ZFSManager-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ZFSManager/Pods-ZFSManager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMSSH.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ZFSManager/Pods-ZFSManager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1508,6 +1509,8 @@
 				75A63D4C21F9E2B100248D07 /* SPStringAdditionsTests.swift in Sources */,
 				5AF0D62F291040897EA3ACC1 /* ZFSMainPoolVC.swift in Sources */,
 				5AF0D31DD63B962EAC4D327B /* ZFSPool.swift in Sources */,
+				5AF0DB052C48B3E9F1455ED1 /* ZFSMainTVC.swift in Sources */,
+				5AF0DB8CEAFC8C9D940F6D57 /* ZFSVolumes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

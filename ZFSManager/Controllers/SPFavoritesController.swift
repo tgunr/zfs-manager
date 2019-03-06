@@ -312,11 +312,11 @@ class SPFavoritesController: SPSingleton {
 
     private func _addFavoriteNode(withData data: [AnyHashable : Any]?, asChildOf parent: SPTreeNode?) -> SPTreeNode? {
         var object: Any?
-        var childs: [Any]? = nil
+//        let theChildren: [Any]?
         //if it has "Children" it must be a group node, otherwise assume favorite node
         if data?[SPFavoriteChildrenKey] != nil {
             object = SPGroupNode(dictionary: data ?? [:])
-            childs = data?[SPFavoriteChildrenKey] as? [Any]
+//            theChildren = data?[SPFavoriteChildrenKey] as? [Any]
         } else {
             object = SPFavoriteNode(dictionary: data ?? [:])
         }
@@ -325,12 +325,13 @@ class SPFavoritesController: SPSingleton {
 
         _add(node, asChildOf: parent)
 
-        //also add the children
-        if childs != nil {
-            for childData: [AnyHashable : Any]? in childs as? [[AnyHashable : Any]?] ?? [] {
-                addFavoriteNode(withData: childData, asChildOf: node)
-            }
-        }
+        // TODO: Fix this
+        // also add the children
+//        if theChildren != nil {
+//            for childData in theChildren!{
+//                _ = addFavoriteNode(withData: childData, asChildOf: node)
+//            }
+//        }
 
         return node
     }
@@ -339,7 +340,7 @@ class SPFavoritesController: SPSingleton {
 // MARK: Initialisation
     class func alloc(with zone: NSZone?) -> Any? {
         let lockQueue = DispatchQueue(label: "self")
-        lockQueue.sync {
+        _ = lockQueue.sync {
             return self.shared()?.retain()
         }
 

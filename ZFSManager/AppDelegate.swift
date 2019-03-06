@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var connection: Connection?
     var pools: ZFSPools?
 
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if pools == nil {
             pools = ZFSPools()
