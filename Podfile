@@ -10,7 +10,8 @@ target 'ZFSManager' do
 
   # Pods for ZFSManager
   pod 'NMSSH'
-  pod 'RxSwift',    '~> 4.0'
+  pod 'RxSwift',    '~> 4.4.1'
+  pod 'RxOptional'
   pod 'SwiftLint'
 end
 

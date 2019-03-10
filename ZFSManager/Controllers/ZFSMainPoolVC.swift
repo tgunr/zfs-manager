@@ -4,6 +4,7 @@
 //
 
 import Cocoa
+import RxSwift
 
 class ZFSPoolVC: ZFSMainTVC, NSTableViewDelegate, NSTableViewDataSource, NSOutlineViewDelegate, NSOutlineViewDataSource {
     var poolStrings: [String]?
@@ -16,6 +17,11 @@ class ZFSPoolVC: ZFSMainTVC, NSTableViewDelegate, NSTableViewDataSource, NSOutli
 //        appDelegate.pools = zfsPools
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        zfsPools  = appDelegate.pools
+//        let zfsPoolsO = Observable().
+    }
 }
 
 class ZFSMainPoolVC: ZFSPoolVC {
@@ -34,6 +40,17 @@ class ZFSMainPoolVC: ZFSPoolVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let subscription = zfsPools.subscribe { event in
+//            switch event {
+//            case .next(let value):
+//                print(value)
+//            case .error(let error):
+//                print(error)
+//            case .completed:
+//                print("completed")
+//            }
+//        }
+
         createPoolsHeaderTable()
     }
 

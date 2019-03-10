@@ -1,13 +1,13 @@
 PODS:
   - NMSSH (2.3.1)
-  - RxAtomic (4.4.0)
-  - RxSwift (4.4.0):
+  - RxAtomic (4.4.1)
+  - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
-  - SwiftLint (0.30.0)
+  - SwiftLint (0.31.0)
 
 DEPENDENCIES:
   - NMSSH
-  - RxSwift (~> 4.0)
+  - RxSwift (~> 4.4.1)
   - SwiftLint
 
 SPEC REPOS:
@@ -19,10 +19,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   NMSSH: cd689ae535a1581a6dd9fd4600ff71247df510a6
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
-  SwiftLint: 4e37cb5cd33435170dfd09fba089f41fdbf64d53
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: eeb574e70ef194ebfdefddd56412f57da7183b7b
+PODFILE CHECKSUM: e6058e78723e830186664f47a54de76b4d8b9aee
 
 COCOAPODS: 1.7.0.beta.1
