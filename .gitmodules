@@ -1,0 +1,3 @@
+[submodule "Submodules/zfswatcher"]
+	path = Submodules/zfswatcher
+	url = git@github.com:damicon/zfswatcher.git
